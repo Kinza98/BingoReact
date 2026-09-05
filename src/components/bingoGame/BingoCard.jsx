@@ -17,7 +17,7 @@ function BingoCard({
   return (
     <div
       style={{ "--cell-theme": theme }}
-      className={`bg-(--cell-theme) xs:p-6 xxs:p-5 p-4 rounded-md space-y-2 xs:space-y-5 shadow-[3px_3px_4px_rgba(0,0,0,0.3)] text-center`}
+      className={`bg-(--cell-theme) xs:p-6 xxs:p-5 p-4 rounded-md space-y-6 xs:space-y-5 shadow-[3px_3px_4px_rgba(0,0,0,0.3)] text-center`}
     >
       {(mode === "play" || mode === "bot") && children}
       <div>

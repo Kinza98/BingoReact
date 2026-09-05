@@ -164,7 +164,7 @@ function Play() {
         (botScore >= 5 && (
           <Result>
             <div className="flex items-center justify-center flex-col gap-3 ">
-              <span className="text-4xl font-primary tracking-widest">
+              <span className="text-2xl md:text-4xl font-primary tracking-widest text-center">
                 {" "}
                 {score >= 5 ? (
                   <>You WON !</>
@@ -173,7 +173,7 @@ function Play() {
                 )}
               </span>
 
-              <div>
+              <div className="flex text-center">
                 <Button variant="ocean" onClick={handleRestart}>
                   Play Again
                 </Button>
@@ -181,7 +181,7 @@ function Play() {
                   Change Card
                 </Button> */}
                 <Button variant="wine" to="/">
-                  <HiX />
+                  <HiX className="-mr-2" />
                   End Game
                 </Button>
               </div>

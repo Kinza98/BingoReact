@@ -1,4 +1,4 @@
-function BingoScore(score) {
+function BingoScore({ score }) {
   return (
     <h1 className="font-primary text-white text-lg md:text-xl flex gap-4 items-center justify-center">
       <span
