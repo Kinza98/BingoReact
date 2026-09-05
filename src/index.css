@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --breakpoint-xxs: 21rem;
+  --breakpoint-xs: 30rem;
+
+  --color-primary: var(--color-cyan-950);
+  --color-secondary: #4b255e;
+
+  --font-primary: "Pacifico", cursive;
+  --font-secondary: "Nunito", sans-serif;
+
+  --animate-drop1: drop 0.3s ease-out both;
+  --animate-drop2: drop 0.5s ease-out both;
+  --animate-drop3: drop 0.7s ease-out both;
+  --animate-drop4: drop 0.9s ease-out both;
+  --animate-drop5: drop 1.05s ease-out both;
+  --animate-pop-in: popIn 0.4s ease-out forwards;
+  --animate-pop-out: popOut 0.4s ease-out forwards;
+  --animate-overlay-in: overlayIn 0.3s ease-out forwards;
+  --animate-overlay-out: overlayOut 0.6s ease-in forwards;
+
+  @keyframes drop {
+    from {
+      transform: translateY(-200px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes popIn {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes popOut {
+    0% {
+      transform: scale(1);
+    }
+    60% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes overlayIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes overlayOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+}

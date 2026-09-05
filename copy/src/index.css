@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --breakpoint-xxs: 21rem;
+  --breakpoint-xs: 30rem;
+
+  --color-primary: var(--color-cyan-950);
+
+  --font-primary: "Pacifico", cursive;
+  --font-secondary: "Nunito", sans-serif;
+
+  --animate-drop1: drop 0.3s ease-out both;
+  --animate-drop2: drop 0.5s ease-out both;
+  --animate-drop3: drop 0.7s ease-out both;
+  --animate-drop4: drop 0.9s ease-out both;
+  --animate-drop5: drop 1.05s ease-out both;
+
+  @keyframes drop {
+    from {
+      transform: translateY(-200px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
