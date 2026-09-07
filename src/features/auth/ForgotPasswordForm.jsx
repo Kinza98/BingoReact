@@ -1,12 +1,16 @@
 import { useState } from "react";
 import InputField from "../../components/ui/InputField";
 import Button from "../../components/ui/Button";
+import Spinner from "../../components/ui/Spinner";
+import { useForgotPassword } from "./useForgotPassword";
 
 function ForgotPasswordForm() {
   const [email, setEmail] = useState();
+  const { forgot, isLoading } = useForgotPassword();
 
   function handleSubmit(e) {
     e.preventDefault();
+    forgot(email);
   }
   return (
     <form
@@ -21,7 +25,13 @@ function ForgotPasswordForm() {
         id="email"
       />
       <Button type="submit" style="game">
-        Send Email
+        {isLoading ? (
+          <span className="mx-auto w-fit block">
+            <Spinner size="sm" />
+          </span>
+        ) : (
+          "Send Email"
+        )}
       </Button>
     </form>
   );

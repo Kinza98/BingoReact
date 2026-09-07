@@ -9,7 +9,7 @@ function Welcome() {
   return (
     <div className="relative min-h-dvh overflow-hidden p-7 bg-slate flex items-center flex-col  justify-center gap-2 font-secondary">
       <BlobBackground />
-      <BingoBatch classes="mb-3 md:mb-5" />
+      {/* <BingoBatch classes="mb-3 md:mb-5" /> */}
 
       <Heading as="h1" classes="md:text-5xl tracking-widest">
         BINGO

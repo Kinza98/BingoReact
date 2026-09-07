@@ -3,7 +3,7 @@ import SignUpOptions from "../features/auth/SignUpOptions";
 
 function SignUp() {
   return (
-    <AuthLayout mb="8" heading="Join the Fun!">
+    <AuthLayout mb="5" heading="Join the Fun!">
       <SignUpOptions />
     </AuthLayout>
   );

@@ -71,7 +71,7 @@ function SignupForm() {
           "Sign up"
         )}
       </Button>
-      <span className="text-white/50  block -mt-3">
+      <span className="text-white/50  block -mt-3 text-sm sm:text-base">
         Already have an account?
         <Link to="/signin" className="text-amber underline ml-1">
           Sign in

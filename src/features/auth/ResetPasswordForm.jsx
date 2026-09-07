@@ -3,10 +3,18 @@ import InputField from "../../components/ui/InputField";
 import Button from "../../components/ui/Button";
 import { validatePassword } from "../../utils/authValidation";
 import toast from "react-hot-toast";
+import { useResetPassword } from "./useResetPassword";
+import Spinner from "../../components/ui/Spinner";
 
 function ResetPasswordForm() {
   const [password, setPassword] = useState();
   const [cPassword, setCPassword] = useState();
+  const { reset, isLoading, isSuccess } = useResetPassword();
+
+  if (isSuccess && !isLoading) {
+    setPassword("");
+    setCPassword("");
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -15,6 +23,8 @@ function ResetPasswordForm() {
       toast.error("Confirm passowrd does not match with password.");
     if (validatePassword(password) !== "")
       toast.error(validatePassword(password));
+
+    reset(password);
   }
   return (
     <form
@@ -37,7 +47,13 @@ function ResetPasswordForm() {
         id="cpassword"
       />
       <Button type="submit" style="game">
-        Reset Password
+        {isLoading ? (
+          <span className="mx-auto w-fit block">
+            <Spinner size="sm" />
+          </span>
+        ) : (
+          "Reset Password"
+        )}
       </Button>
     </form>
   );

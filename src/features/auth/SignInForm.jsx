@@ -57,7 +57,7 @@ function SignInForm() {
         />
         <Link
           to="/forgot-password"
-          className="text-white/50 tracking-wide text-right inline underline"
+          className="text-white/50 tracking-wide text-right inline underline text-sm sm:text-base"
         >
           Forgot Password ?
         </Link>
@@ -72,7 +72,7 @@ function SignInForm() {
           "Log in"
         )}
       </Button>
-      <span className="text-white/50  block -mt-3">
+      <span className="text-white/50  block -mt-3 text-sm sm:text-base">
         Don't have an account?
         <Link to="/signup" className="text-amber underline ml-1">
           Sign up
