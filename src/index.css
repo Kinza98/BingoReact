@@ -9,6 +9,34 @@
   --color-primary: var(--color-cyan-950);
   --color-secondary: #4b255e;
 
+  --color-slate: #2b3a4a; 
+  --color-teal: #3a6e63;
+  --color-amber: #e8a33d;
+  /* 1. Deep forest grape */
+  --color-forest-900: #14241b;
+  --color-forest-700: #2e5339;
+  --color-forest-500: #6b3fa0;
+
+  /* 2. Ocean jewel */
+  --color-ocean-900: #0d1b2a;
+  --color-ocean-700: #203a43;
+  --color-ocean-500: #2c5f6f;
+
+  /* 3. Cosmic neon */
+  --color-neon-900: #071e22;
+  --color-neon-700: #0f3d3e;
+  --color-neon-500: #2b1b3d;
+
+  /* 4. Twilight purple */
+  --color-twilight-900: #1a0b2e;
+  --color-twilight-700: #2e1a47;
+  --color-twilight-500: #503c5d;
+
+  /* 5. Midnight royal */
+  --color-royal-900: #0d1b2a;
+  --color-royal-700: #1b0e3d;
+  --color-royal-500: #4f8f6b;
+
   --font-primary: "Pacifico", cursive;
   --font-secondary: "Nunito", sans-serif;
 

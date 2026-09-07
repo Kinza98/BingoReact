@@ -1,8 +1,10 @@
 function BingoCell({ num, onChange, index, mode, theme, onClick }) {
-  console.log(theme);
 
+  
   const isPlay = mode === "play" || mode === "bot";
   const isBot = mode === "bot";
+  const isHistory = mode === "saved";
+
   const isWriteMode = Boolean(onChange);
   function handleChange(e) {
     onChange({
@@ -19,21 +21,22 @@ function BingoCell({ num, onChange, index, mode, theme, onClick }) {
   }
 
   const cellSize = isPlay ? "xs:w-20 xs:h-20 " : "xs:w-14 xs:h-14";
-  const cellStyle = isPlay
-    ? isBot
-      ? "cursor-not-allowed"
-      : "enabled:hover:brightness-75 cursor-pointer transition"
-    : "";
+  const cellStyle =
+    isPlay || isHistory
+      ? isBot || isHistory
+        ? "cursor-not-allowed"
+        : "enabled:hover:brightness-75 cursor-pointer transition"
+      : "";
   return (
     <div className={` w-10 h-10 ${cellSize} w- border border-white/9`}>
       {!isWriteMode ? (
         <button
           onClick={onClick ? handleClick : undefined}
-          disabled={isPlay ? num.checked : false}
+          disabled={isPlay || isHistory ? num.checked : false}
           style={{ "--cell-theme": theme }}
           className={`relative disabled:cursor-not-allowed  w-full h-full text-sm xs:text-lg bg-(--cell-theme)/90 ${cellStyle} font-secondary text-white`}
         >
-          {isPlay && num?.checked && (
+          {(isPlay || isHistory) && num.checked && (
             <span
               style={{ "--cell-theme": theme }}
               className={`absolute inset-0 z-10 bg-(--cell-theme)/50 brightness-75 flex items-center justify-center text-5xl font-light`}
@@ -44,9 +47,11 @@ function BingoCell({ num, onChange, index, mode, theme, onClick }) {
               </span>
             </span>
           )}
-          {isPlay ? (
-            isBot ? (
-              <span className={`${isBot && num.checked ? "opacity-50" : "blur"}`}>
+          {isPlay || isHistory ? (
+            isBot || isHistory ? (
+              <span
+                className={`${isBot && num.checked ? "opacity-50" : isHistory ? "": "blur"}`}
+              >
                 {num.value}
               </span>
             ) : (

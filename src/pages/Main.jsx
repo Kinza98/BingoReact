@@ -74,7 +74,7 @@ function Main() {
             <span className="hidden md:inline">History</span>
           </Button>
 
-          <Button to="/settings" variant="moss">
+          <Button to="/game/settings" variant="moss">
             <HiCog />
             <span className="hidden md:inline">Settings</span>
           </Button>
