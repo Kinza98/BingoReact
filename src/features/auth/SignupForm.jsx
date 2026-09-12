@@ -33,7 +33,7 @@ function SignupForm() {
       className="mt-5 md:mt-8 w-full max-w-200 text-center space-y-4 md:space-y-5 min-h-60"
       onSubmit={handleSubmit}
     >
-      <div className="flex gap-5">
+      <div className="flex gap-3 sm:gap-5">
         <InputField
           type="text"
           value={email}

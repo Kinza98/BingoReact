@@ -23,7 +23,7 @@ function Button({
     style === "simple"
       ? `${classes} m-2 ml-0 mx-auto items-center flex gap-3 w-fit hover:bg-transparent ${bg} rounded-sm font-secondary text-white outline-0 cursor-pointer hover:border-white border-transparent border md:min-w-48 xs:py-2 xs:px-4 p-2 xs:text-lg text-center text-sm`
       : style === "game"
-        ? `text-center md:max-w-80 w-full bg-amber font-semibold md:font-bold md:min-w-48 transition-transform duration-100 hover:scale-105 md:py-4 xs:px-5 px-3 py-3 rounded-lg font-secondary text-slate outline-0 cursor-pointer text-base xs:text-lg shadow-lg md:shadow-[3px_3px_4px_rgba(0,0,0,0.3)]`
+        ? `text-center md:max-w-80 w-full bg-amber font-semibold md:font-bold md:min-w-48 transition-transform duration-100 hover:scale-105 md:py-4 xs:px-5 px-3 py-2.5 sm:py-3 rounded-lg font-secondary text-slate outline-0 cursor-pointer text-base xs:text-lg shadow-lg md:shadow-[3px_3px_4px_rgba(0,0,0,0.3)]`
         : `${classes}  m-2 ml-0 items-center flex gap-3 w-fit md:min-w-48 ${colorMap[variant]} transition-transform duration-100 hover:scale-105 xs:py-3 xs:px-5 p-2 rounded-sm font-secondary text-white outline-0 cursor-pointer text-sm xs:text-lg shadow-[3px_3px_4px_rgba(0,0,0,0.3)]`;
   return to ? (
     <Link to={to} onClick={onClick} className={`${className} text-center`}>
