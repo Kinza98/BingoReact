@@ -1,4 +1,5 @@
 import BingoCard from "../components/bingoGame/BingoCard";
+import HistoryContainer from "../features/history/HistoryContainer";
 
 const savedPatterns = [
   {
@@ -161,20 +162,8 @@ function History() {
   return (
     <div className="text-white">
       <h4>You have won 3 out of 5 games </h4>
-      <div className="flex gap-7 mt-7 flex-col">
-        {savedPatterns.map((saved, index) => {
-          const numbers = saved.pattern.sort((a, b) => a.index - b.index);
-          // .map((ptrn) => ptrn.value);
-
-          return (
-            <div className="flex gap-2 flex-col" key={index}>
-              <span className="w-full h-1 bg-black/50 block"></span>
-              <div>You won against bot</div>
-              <BingoCard mode="saved" numbers={numbers} theme={saved.theme} />
-            </div>
-          );
-        })}
-      </div>
+      <div className="flex gap-7 mt-7 flex-col"></div>
+      <HistoryContainer />
     </div>
   );
 }

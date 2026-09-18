@@ -1,10 +1,11 @@
 function Toggle({ enabled, onChange, theme }) {
-    const bg = `bg-[${theme}]`
+  // const bg = `bg-[${theme}]`;
   return (
     <button
       type="button"
       onClick={() => onChange(!enabled)}
-      className={`relative h-6 w-11 rounded-full transition-colors ${bg} ${
+      style={{ backgroundColor: enabled ? theme : "#4B5563" }}
+      className={`relative h-6 w-11 rounded-full transition-colors  ${
         enabled ? ` brightness-75` : "brightness-50"
       }`}
     >

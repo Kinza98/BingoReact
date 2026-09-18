@@ -1,6 +1,4 @@
 function BingoCell({ num, onChange, index, mode, theme, onClick }) {
-
-  
   const isPlay = mode === "play" || mode === "bot";
   const isBot = mode === "bot";
   const isHistory = mode === "saved";
@@ -34,7 +32,7 @@ function BingoCell({ num, onChange, index, mode, theme, onClick }) {
           onClick={onClick ? handleClick : undefined}
           disabled={isPlay || isHistory ? num.checked : false}
           style={{ "--cell-theme": theme }}
-          className={`relative disabled:cursor-not-allowed  w-full h-full text-sm xs:text-lg bg-(--cell-theme)/90 ${cellStyle} font-secondary text-white`}
+          className={`relative disabled:cursor-not-allowed  w-full h-full text-sm xs:text-lg bg-(--cell-theme) ${cellStyle} font-secondary text-white`}
         >
           {(isPlay || isHistory) && num.checked && (
             <span
@@ -50,7 +48,7 @@ function BingoCell({ num, onChange, index, mode, theme, onClick }) {
           {isPlay || isHistory ? (
             isBot || isHistory ? (
               <span
-                className={`${isBot && num.checked ? "opacity-50" : isHistory ? "": "blur"}`}
+                className={`${isBot && num.checked ? "opacity-50" : isHistory ? "" : "blur"}`}
               >
                 {num.value}
               </span>

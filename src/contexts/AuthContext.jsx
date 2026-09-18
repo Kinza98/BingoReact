@@ -40,9 +40,12 @@ function AuthProvider({ children }) {
         userId: user?.id,
         email: user?.email,
         name: user?.is_anonymous
-          ? user?.user_metadata.name
+          ? user?.user_metadata?.name
           : user?.user_metadata?.name,
-        guest: user?.is_anonymous,
+        isGuest: user?.is_anonymous,
+        soundOn: user?.user_metadata?.soundOn || false,
+        darkMode: user?.user_metadata?.darkMode || false,
+        saveHistory: user?.user_metadata?.saveHistory || false,
         isAuthenticated: user?.role === "authenticated",
       }}
     >
