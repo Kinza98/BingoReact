@@ -1,8 +1,7 @@
-import { createContext, useContext, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { createContext, useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const BingoContext = createContext();
-//   const numbers = Array.from({ length: 25 }, (_, i) => i + 1);
 
 const numberGenerator = () => {
   const newNumbers = Array.from({ length: 25 }, (_, i) => i + 1);
@@ -21,58 +20,77 @@ const numberGenerator = () => {
 
 function BingoProvider({ children }) {
   const [numbers, setNumbers] = useState(numberGenerator);
-  const [error, setError] = useState();
-  // const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [isWrite, setIsWrite] = useState(false);
 
   function refreshOrder() {
-    const newNumbers = numberGenerator();
-    setNumbers(newNumbers);
+    setIsWrite(false);
+
+    setNumbers(numberGenerator());
+    setError("");
   }
 
+  useEffect(() => {
+    if (!isWrite) return;
+    toast.success("Numbers have been updated succesfully!");
+  }, [numbers, isWrite]);
+
   function writeNumbers(nums) {
-    setError("");
-    // const errors = [];
+    setIsWrite(true);
+    const newNumbers = [...nums]
+      .sort((a, b) => a.index - b.index)
+      .map((num) => Number(num.value));
 
+    // Check empty / invalid values
     for (const num of nums) {
-      // Check empty
       if (num.value === "" || num.value === null || num.value === undefined) {
-        setError(`Position ${num.index}: value is empty`);
-        return
+        const message = `Position ${num.index + 1}: value is empty`;
+        setError(message);
+        toast.error(message);
+        return;
       }
 
-      // Check not a number
-      if (isNaN(+num.value)) {
-        setError(`Position ${num.index}: "${num.value}" is not a valid number`);
-        return
+      if (isNaN(Number(num.value))) {
+        const message = `Position ${num.index + 1}: "${num.value}" is not a valid number`;
+        setError(message);
+        toast.error(message);
+        return;
       }
 
-      if (+num.value < 1 || +num.value > 25) {
-        setError(`Position ${num.index}: value must be between 1 and 25`);
-        return
+      if (Number(num.value) < 1 || Number(num.value) > 25) {
+        const message = `Position ${num.index + 1}: "${num.value}"  value must be between 1 and 25`;
+        setError(message);
+        toast.error(message);
+        return;
       }
     }
 
-    const newNumbers = [...nums]
-      .sort((a, b) => a.index - b.index)
-      .map((num) => +num.value);
-
+    // Check duplicates
     const numberSet = new Set(newNumbers);
 
     if (numberSet.size !== newNumbers.length) {
-      
-      setError(`Duplicate values are not allowed`);
-      return
+      const message = "Duplicate values are not allowed";
+
+      setError(message);
+      toast.error(message);
+      return;
     }
 
-    if(error) return;
-
+    // Everything is valid
+    setError("");
     setNumbers(newNumbers);
-    // navigate("/");
   }
 
   return (
     <BingoContext.Provider
-      value={{ numbers, refreshOrder, writeNumbers, setNumbers, numberGenerator }}
+      value={{
+        numbers,
+        refreshOrder,
+        writeNumbers,
+        setNumbers,
+        numberGenerator,
+        error,
+      }}
     >
       {children}
     </BingoContext.Provider>
@@ -81,7 +99,11 @@ function BingoProvider({ children }) {
 
 function useBingoContext() {
   const context = useContext(BingoContext);
-  if (!context) throw new Error("Context used outside of provider");
+
+  if (!context) {
+    throw new Error("Context used outside of provider");
+  }
+
   return context;
 }
 

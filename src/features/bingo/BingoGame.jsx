@@ -4,7 +4,7 @@ import { useBingoContext } from "../../contexts/BingoProviderContext";
 import Button from "../../components/ui/Button";
 import BingoCard from "../../components/bingoGame/BingoCard";
 
-function BingoGame({ mode = "play" }) {
+function BingoGame({ mode = "play", theme }) {
   const [newNumbers, setNewNumbers] = useState([]);
   const { numbers, writeNumbers } = useBingoContext();
 
@@ -30,10 +30,11 @@ function BingoGame({ mode = "play" }) {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <BingoCard
         numbers={isWriteMode ? spaceNumbers : numbers}
         mode={mode}
+        theme={theme}
         onChange={handleChange}
       />
 
@@ -46,8 +47,8 @@ function BingoGame({ mode = "play" }) {
       {isFilled && (
         <Button
           onClick={() => writeNumbers(newNumbers)}
-          variant="pinkPurple"
-          classes="justify-center mx-auto"
+          variant="ocean"
+          style="glass"
         >
           Save
         </Button>

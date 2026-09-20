@@ -160,11 +160,9 @@ const savedPatterns = [
 
 function History() {
   return (
-    <div className="text-white">
-      <h4>You have won 3 out of 5 games </h4>
-      <div className="flex gap-7 mt-7 flex-col"></div>
+    <>
       <HistoryContainer />
-    </div>
+    </>
   );
 }
 

@@ -85,7 +85,7 @@ function SettingsContainer() {
           {/* Exit / Logout — mobile */}
           <Button
             onClick={exit}
-            classes="w-full flex items-center justify-center gap-2 bg-[#5b2020] border border-red-500/30 text-red-400 md:hidden"
+            classes="w-full flex items-center justify-center gap-2 bg-theme-red border border-red-500/30 text-red-400 md:hidden"
           >
             <HiArrowLeftOnRectangle className="text-lg" />
             {isGuest ? "Exit" : "Log out"}

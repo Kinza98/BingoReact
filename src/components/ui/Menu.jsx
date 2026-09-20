@@ -73,7 +73,7 @@ function Content({ children }) {
   );
 }
 
-function Item({ children, to, onClick }) {
+function Item({ children, to, onClick, variant }) {
   const { closeMenu } = useContext(MenuContext);
 
   const handleClick = () => {
@@ -81,8 +81,7 @@ function Item({ children, to, onClick }) {
     onClick?.();
   };
 
-  const className =
-    "block w-full text-left px-3 py-2.5 rounded-lg text-sm text-white/80 hover:text-white hover:bg-white/10 transition-colors";
+  const className = ` ${variant === "danger" ? "bg-theme-red bg-[#5b2020]" : ""} cursor-pointer block w-full text-left px-3 py-2.5 rounded-lg text-sm md:text-base text-white/80 hover:text-amber  transition-colors`;
   if (to) {
     return (
       <Link to={to} onClick={handleClick} className={className}>
