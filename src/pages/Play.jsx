@@ -1,4 +1,4 @@
-import GamePlay from "../features/game/gamePlay";
+import GamePlay from "../features/game/GamePlayContainer";
 
 function Play() {
   return <GamePlay />;
