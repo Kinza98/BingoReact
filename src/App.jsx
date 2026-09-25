@@ -17,6 +17,7 @@ import { HiExclamationTriangle } from "react-icons/hi2";
 import { HiCheckCircle } from "react-icons/hi";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import { GameThemeProvider } from "./contexts/GameThemeContext";
 
 function App() {
   // const [isDark, setIsDark] = useDarkMode();
@@ -43,7 +44,6 @@ function App() {
         position="top-center"
         toastOptions={{
           duration: 3000,
-
           error: {
             style: {
               background: "#B84A4A",
@@ -73,29 +73,31 @@ function App() {
       />
       <BrowserRouter>
         <BingoProvider>
-          <Routes>
-            <Route
-              path="/game"
-              element={
-                <ProtectedRoute>
-                  <AppLayout />{" "}
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<Main />} />
-              <Route path="edit" element={<ChangeOrder />} />
-              <Route path="write" element={<WriteNumbers />} />
-              <Route path="saved" element={<Saved />} />
-              <Route path="play" element={<Play />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="history" element={<History />} />
-            </Route>
-            <Route path="/" element={<Welcome />} />
-            <Route path="signin" element={<SignIn />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="forgot-password" element={<ForgotPassword />} />
-            <Route path="reset-password" element={<ResetPassword />} />
-          </Routes>
+          <GameThemeProvider>
+            <Routes>
+              <Route
+                path="/game"
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />{" "}
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<Main />} />
+                <Route path="edit" element={<ChangeOrder />} />
+                <Route path="write" element={<WriteNumbers />} />
+                <Route path="saved" element={<Saved />} />
+                <Route path="play" element={<Play />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="history" element={<History />} />
+              </Route>
+              <Route path="/" element={<Welcome />} />
+              <Route path="signin" element={<SignIn />} />
+              <Route path="signup" element={<SignUp />} />
+              <Route path="forgot-password" element={<ForgotPassword />} />
+              <Route path="reset-password" element={<ResetPassword />} />
+            </Routes>
+          </GameThemeProvider>
         </BingoProvider>
       </BrowserRouter>
     </>

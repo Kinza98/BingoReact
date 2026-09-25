@@ -3,11 +3,11 @@ import StackedBingoCards from "../../components/ui/StackedCards";
 
 function BingoPreview({ numbers }) {
   return (
-    <div className="w-fit xs:w-100 relative">
+    <div className="relative w-[85vw] max-w-100 sm:w-100">
       <StackedBingoCards />
 
-      <div className="w-fit m-auto absolute inset-0 flex justify-center items-center">
-        <BingoCard numbers={numbers} theme="#163235" mode="preview" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <BingoCard numbers={numbers} theme="var(--color-neon-700)" mode="preview" />
       </div>
     </div>
   );

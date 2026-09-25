@@ -18,8 +18,10 @@ function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 flex justify-between items-center p-6 z-50 transition-all duration-300 ${
-        scrolled ? "bg-neon-900 shadow-md" : ""
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-4 sm:px-6 md:py-5 transition-all duration-300 ${
+        scrolled
+          ? "bg-neon-900/95 shadow-md backdrop-blur-sm"
+          : "bg-transparent"
       }`}
     >
       <Logo />

@@ -1,4 +1,5 @@
 import { supabase } from "../lib/supabase";
+import { saveDefaultCards } from "./savedPatternApi";
 
 export async function signUp({ email, name, password }) {
   const { data, error } = await supabase.auth.signUp({
@@ -11,7 +12,13 @@ export async function signUp({ email, name, password }) {
     },
   });
 
-  if (error) throw new Error(error.message);
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  if (data.user) {
+    await saveDefaultCards(data.user.id);
+  }
 
   return data;
 }
@@ -35,8 +42,13 @@ export async function joinGuest({ name }) {
       },
     },
   });
+
   if (error) {
     throw new Error(error.message);
+  }
+
+  if (data.user) {
+    await saveDefaultCards(data.user.id);
   }
 
   return data;

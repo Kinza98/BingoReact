@@ -11,7 +11,7 @@ function FemaleBingoBot({
         aria-label="Bingo bot profile"
       >
         {/* Head */}
-        <div className="absolute inset-0 rounded-[38%] bg-[#194e58] border-2 border-[#3a6e63] shadow-lg">
+        <div className="absolute inset-0 rounded-[38%] bg-[#3e4c70] border-2 border-[#3a6e63] shadow-lg">
           {/* Ear pieces */}
           <div className="absolute top-1/2 -translate-y-1/2 -left-1.5 w-2 h-5 rounded-full bg-[#3a6e63]" />
           <div className="absolute top-1/2 -translate-y-1/2 -right-1.5 w-2 h-5 rounded-full bg-[#3a6e63]" />
@@ -43,7 +43,7 @@ function FemaleBingoBot({
       </div>
 
       {/* Head */}
-      <div className="absolute top-5 left-1/2 -translate-x-1/2 w-32 h-24 rounded-[38%] bg-[#194e58] border-4 border-[#3a6e63] shadow-xl">
+      <div className="absolute top-5 left-1/2 -translate-x-1/2 w-32 h-24 rounded-[38%] bg-[#3e4c70] border-4 border-[#3a6e63] shadow-xl">
         {/* Ear pieces */}
         <div className="absolute top-8 -left-4 w-5 h-10 rounded-full bg-[#3a6e63]" />
         <div className="absolute top-8 -right-4 w-5 h-10 rounded-full bg-[#3a6e63]" />
@@ -67,15 +67,15 @@ function FemaleBingoBot({
       <div className="absolute top-[116px] left-1/2 -translate-x-1/2 w-8 h-5 bg-[#3a6e63] rounded-b-lg" />
 
       {/* Body */}
-      <div className="absolute top-[125px] left-1/2 -translate-x-1/2 w-32 h-24 rounded-[35%] bg-[#194e58] border-4 border-[#3a6e63] shadow-xl">
+      <div className="absolute top-[125px] left-1/2 -translate-x-1/2 w-32 h-24 rounded-[35%] bg-[#3e4c70] border-4 border-[#3a6e63] shadow-xl">
         <div className="absolute top-4 left-1/2 -translate-x-1/2 w-16 h-12 rounded-2xl bg-[#18282d] border border-white/10 flex items-center justify-center">
           <div className="text-[#f2b544] text-lg font-bold tracking-widest">
-            B
+            K
           </div>
         </div>
 
-        <div className="absolute top-5 -left-9 w-7 h-16 rounded-full bg-[#194e58] border-4 border-[#3a6e63] rotate-[12deg]" />
-        <div className="absolute top-5 -right-9 w-7 h-16 rounded-full bg-[#194e58] border-4 border-[#3a6e63] -rotate-[12deg]" />
+        <div className="absolute top-5 -left-9 w-7 h-16 rounded-full bg-[#3e4c70] border-4 border-[#3a6e63] rotate-[12deg]" />
+        <div className="absolute top-5 -right-9 w-7 h-16 rounded-full bg-[#3e4c70] border-4 border-[#3a6e63] -rotate-[12deg]" />
       </div>
 
       {/* Skirt / lower body */}

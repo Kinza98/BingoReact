@@ -31,9 +31,11 @@ function SettingsContainer() {
 
   return (
     <VerticalTabs defaultTab="preferences">
-      <div className="mx-auto py-6 md:flex md:gap-12">
-        <div className="hidden md:flex md:flex-col md:w-56 md:shrink-0">
+      <div className="mx-auto flex w-full flex-col gap-6 py-4 sm:py-6 md:flex-row md:gap-10 lg:gap-12">
+        {/* Desktop sidebar */}
+        <div className="hidden w-52 shrink-0 md:flex md:flex-col lg:w-56">
           <Profile isGuest={isGuest} email={email} name={name} />
+
           <VerticalTabs.List>
             <VerticalTabs.Tab
               value="preferences"
@@ -59,33 +61,32 @@ function SettingsContainer() {
 
           <Button
             onClick={exit}
-            classes="w-full flex items-center justify-center gap-2 bg-[#5b2020] border border-red-500/30 text-red-400 mt-5"
+            variant="wine"
+            classes="mt-5 flex w-full items-center justify-center gap-2 bg-theme-red text-red-400"
           >
             <HiArrowLeftOnRectangle className="text-lg" />
             {isGuest ? "Exit" : "Log out"}
           </Button>
         </div>
 
-        <div className="flex-1">
-          {/* Preferences */}
+        {/* Settings content */}
+        <div className="min-w-0 flex-1">
           <VerticalTabs.Section value="preferences">
             <Preferences />
           </VerticalTabs.Section>
 
-          {/* Account */}
           <VerticalTabs.Section value="account">
             <AccountSettings />
           </VerticalTabs.Section>
 
-          {/* Privacy */}
           <VerticalTabs.Section value="privacy">
             <Privacy />
           </VerticalTabs.Section>
 
-          {/* Exit / Logout — mobile */}
           <Button
             onClick={exit}
-            classes="w-full flex items-center justify-center gap-2 bg-theme-red border border-red-500/30 text-red-400 md:hidden"
+            variant="wine"
+            classes="flex w-full items-center justify-center gap-2  text-red-400 md:hidden"
           >
             <HiArrowLeftOnRectangle className="text-lg" />
             {isGuest ? "Exit" : "Log out"}

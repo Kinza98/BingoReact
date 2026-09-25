@@ -1,58 +1,67 @@
 import { useState } from "react";
 
 import { useBingoContext } from "../../contexts/BingoProviderContext";
-import Button from "../../components/ui/Button";
 import BingoCard from "../../components/bingoGame/BingoCard";
+import Button from "../../components/ui/Button";
 
-function BingoGame({ mode = "play", theme }) {
+function BingoGame({ mode = "play", theme, savePattern }) {
   const [newNumbers, setNewNumbers] = useState([]);
   const { numbers, writeNumbers } = useBingoContext();
 
   const isWriteMode = mode === "write";
+
   const isFilled =
     newNumbers.length === 25 && newNumbers.every((item) => item.value !== "");
-  const spaceNumbers = Array.from({ length: 25 }, (_, index) => {
-    const item = newNumbers.find((item) => item?.index === index);
 
-    return item ? item.value : "";
+  const displayNumbers = Array.from({ length: 25 }, (_, index) => {
+    const item = newNumbers.find((item) => item?.index === index);
+    return item?.value ?? "";
   });
 
-  function handleChange(obj) {
-    setNewNumbers((numbers) => {
-      const exists = numbers.some((num) => num.index === obj.index);
+  function handleChange(updatedNumber) {
+    setNewNumbers((currentNumbers) => {
+      const exists = currentNumbers.some(
+        (number) => number.index === updatedNumber.index,
+      );
 
       if (exists) {
-        return numbers.map((num) => (num.index === obj.index ? obj : num));
+        return currentNumbers.map((number) =>
+          number.index === updatedNumber.index ? updatedNumber : number,
+        );
       }
 
-      return [...numbers, obj];
+      return [...currentNumbers, updatedNumber];
     });
+  }
+
+  function handleSave() {
+    const success = writeNumbers(newNumbers);
+
+    if (!success) return;
+
+    const savedNumbers = [...newNumbers]
+      .sort((a, b) => a.index - b.index)
+      .map((number) => Number(number.value));
+
+    savePattern(savedNumbers);
   }
 
   return (
     <div className="flex flex-col items-center">
       <BingoCard
-        numbers={isWriteMode ? spaceNumbers : numbers}
+        numbers={isWriteMode ? displayNumbers : numbers}
         mode={mode}
         theme={theme}
         onChange={handleChange}
       />
 
-      {/* {mode === "play" && (
-        <Button style="simple" bg="bg-[#875481]" >
-          {" "}
-          Start Playing
-        </Button>
-      )} */}
-      {isFilled && (
-        <Button
-          onClick={() => writeNumbers(newNumbers)}
-          variant="ocean"
-          style="glass"
-        >
-          Save
-        </Button>
-      )}
+      <Button
+        disabled={!isFilled}
+        onClick={handleSave}
+        classes="disabled:bg-surface/50 disabled:cursor-none bg-surface mt-0 !justify-center"
+      >
+        Save
+      </Button>
     </div>
   );
 }

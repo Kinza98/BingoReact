@@ -7,16 +7,17 @@ import BlobBackground from "../components/ui/BlobBackground";
 
 function Welcome() {
   return (
-    <div className="relative min-h-dvh overflow-hidden p-7 bg-slate flex items-center flex-col  justify-center gap-2 font-secondary">
+    <div className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-slate px-5 py-7 font-secondary sm:px-7">
       <BlobBackground />
 
-      <Heading as="h1" classes="md:text-4xl">
-        <span className="flex gap-2 items-center md:flex-row flex-col">
-          <LogoIcon size="80" /> BINGO
+      <Heading as="h1">
+        <span className="flex flex-col items-center gap-2 sm:flex-row">
+          <LogoIcon size={60} />
+          <span>BINGO</span>
         </span>
       </Heading>
 
-      <p className="text-slate-300 sm:text-lg md:text-xl mt-3 sm:mt-5 md:mt-7 md:tracking-wide text-center">
+      <p className="mt-3 max-w-xl text-center text-sm text-slate-300 sm:mt-5 sm:text-lg md:mt-6 md:text-xl md:tracking-wide">
         Mark your numbers. Race the line. Shout first.
       </p>
 

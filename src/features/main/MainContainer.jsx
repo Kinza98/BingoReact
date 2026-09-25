@@ -7,7 +7,7 @@ function MainContainer() {
   const { numbers } = useBingoContext();
 
   return (
-    <div className="flex px-5 py-5 rounded-lg  lg:min-w-175 md:gap-5 lg:gap-10 flex-wrap justify-center mt-5 lg:mt-0">
+    <div className="flex px-5 py-5 rounded-lg lg:min-w-175 md:gap-5 lg:gap-10 flex-wrap justify-center mt-5 lg:mt-0">
       {/* Left side - Bingo Preview */}
       <BingoPreview numbers={numbers} />
 

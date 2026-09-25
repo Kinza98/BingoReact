@@ -1,41 +1,41 @@
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HiChevronRight, HiLockClosed } from "react-icons/hi";
 
 function AccountSettings() {
   const location = useLocation();
 
-  const isActive = location.hash === `#account`;
+  const isActive = location.hash === "#account";
+
   return (
     <>
-      <p className="text-slate-400 text-xs sm:text-sm font-bold tracking-wider uppercase mb-2.5">
+      <p className="mb-2.5 text-xs font-bold uppercase tracking-wider text-slate-400 sm:text-sm">
         Account
       </p>
 
       <div
-        className={`border border-white/10 rounded-2xl overflow-hidden mb-6 transition-all duration-300 ${
+        className={`mb-6 overflow-hidden rounded-2xl border border-white/10 transition-all duration-300 ${
           isActive ? "bg-white/10" : "bg-white/5"
         }`}
       >
         <Link
           to="/forgot-password"
-          className="w-full flex items-center justify-between p-4 sm:p-5"
+          className="group flex w-full items-center justify-between gap-3 p-4 sm:p-5"
         >
-          <div className="flex items-center gap-2.5">
-            <HiLockClosed className="text-teal-400 text-lg sm:text-xl shrink-0" />
+          <div className="flex min-w-0 items-center gap-2.5">
+            <HiLockClosed className="shrink-0 group-hover:text-amber/40 text-lg text-teal-400 sm:text-xl" />
 
-            <div>
-              <span className="text-white text-sm sm:text-base">
+            <div className="min-w-0">
+              <span className="text-sm text-white sm:text-base group-hover:text-amber">
                 Change password
               </span>
 
-              <p className="text-slate-400 text-xs sm:text-sm mt-0.5 m-0">
+              <p className="m-0 mt-0.5 text-xs leading-relaxed text-slate-400 sm:text-sm">
                 Update your password to keep your account secure.
               </p>
             </div>
           </div>
 
-          <HiChevronRight className="text-slate-400 text-base sm:text-lg" />
+          <HiChevronRight className="shrink-0 text-base text-slate-400 sm:text-lg group-hover:text-amber" />
         </Link>
       </div>
     </>

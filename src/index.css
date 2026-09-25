@@ -8,6 +8,24 @@
   --color-primary: var(--color-cyan-950);
   --color-secondary: #4b255e;
 
+  /* App UI theme */
+  --color-background: #0d1b2a;
+  --color-surface: #18282d;
+  --color-surface-secondary: #263b44;
+
+  --color-text: #ffffff;
+  --color-text-muted: #8da5ae;
+  --color-text-subtle: #647b84;
+
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  --color-player: #6a838f;
+  --color-bot: #967c9b;
+
+  --color-success: #3a6e63;
+  --color-danger: #491a1a;
+  --color-gold: #f2b544;
+
   --color-slate: #2b3a4a;
   --color-teal: #3a6e63;
   --color-amber: #e8a33d;
@@ -73,25 +91,26 @@
   --animate-start-game: start-game 1.4s cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
   --animate-turn-pulse: turn-pulse 1.8s ease-in-out infinite;
   --animate-number-pop: number-pop 0.45s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+  --animate-confetti-explode: confetti-explode ease-out forwards;
 
   @keyframes start-game {
     0% {
       opacity: 0;
-      transform:  scale(0.35) rotate(-8deg);
+      transform: scale(0.35) rotate(-8deg);
     }
 
     35% {
       opacity: 1;
-      transform:  scale(1.12) rotate(2deg);
+      transform: scale(1.12) rotate(2deg);
     }
 
     65% {
-      transform:  scale(0.96) rotate(0);
+      transform: scale(0.96) rotate(0);
     }
 
     100% {
       opacity: 0;
-      transform:  scale(1);
+      transform: scale(1);
     }
   }
 
@@ -381,6 +400,18 @@
 
     100% {
       transform: translateY(4px);
+    }
+  }
+
+  @keyframes confetti-explode {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(var(--x), var(--y)) rotate(var(--rotation));
+      opacity: 0;
     }
   }
 

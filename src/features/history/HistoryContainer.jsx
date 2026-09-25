@@ -1,15 +1,28 @@
-import BingoCard from "../../components/bingoGame/BingoCard";
-import Spinner from "../../components/ui/Spinner";
-import { useAuth } from "../../contexts/AuthContext";
+import { useState } from "react";
+
 import { useGameHistory } from "./useGetHistory";
+import { useDeleteHistory } from "./useDeleteHistory";
+
+import Spinner from "../../components/ui/Spinner";
+import ConfirmDialog from "../../components/ui/ConfirmDialog";
+
+import { useAuth } from "../../contexts/AuthContext";
+
+import HistoryStats from "./HistoryStats";
+import HistoryHeader from "./HistoryHeader";
+import HistoryDay from "./HistoryDay";
 
 function HistoryContainer() {
   const { userId } = useAuth();
+
   const { history = [], error, isLoading } = useGameHistory(userId);
+
+  const { deleteHistory, isDeleting } = useDeleteHistory(userId);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const totalGames = history.length;
   const totalWins = history.filter((game) => game.is_win).length;
-  const totalLosses = history.filter((game) => !game.is_win).length;
+  const totalLosses = totalGames - totalWins;
 
   const winRate =
     totalGames > 0 ? Math.round((totalWins / totalGames) * 100) : 0;
@@ -23,6 +36,8 @@ function HistoryContainer() {
       "0",
     )}-${String(dateObj.getDate()).padStart(2, "0")}`;
   };
+
+  
 
   const groupedHistory = history.reduce((acc, game) => {
     const dateObj = new Date(game.created_at);
@@ -51,161 +66,76 @@ function HistoryContainer() {
     return acc;
   }, {});
 
-  // Helper to format date label
-  const getDateLabel = (dateObj) => {
-    const today = new Date();
-
-    const todayKey = getDateKey(today);
-    const dateKey = getDateKey(dateObj);
-
-    // Create yesterday using the local date
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-
-    const yesterdayKey = getDateKey(yesterday);
-
-    if (dateKey === todayKey) return "Today";
-    if (dateKey === yesterdayKey) return "Yesterday";
-
-    return dateObj.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-    });
+  const handleDeleteHistory = () => {
+    deleteHistory();
+    setShowDeleteConfirm(false);
   };
 
   if (isLoading) return <Spinner />;
 
   if (error) {
     return (
-      <div className="p-6 bg-red-900/20 border border-red-500/30 rounded-xl text-red-400">
-        <p>Something went wrong while loading your history.</p>
+      <div className="p-5 rounded-2xl bg-[#491a1a]/30 border border-[#a35b78]/20 text-[#d5a9ba]">
+        <p className="text-sm">
+          Something went wrong while loading your history.
+        </p>
       </div>
     );
   }
 
-  if (!history.length) return <span className="text-white md:text-lg">No history found.</span>;
+  if (!history.length) {
+    return (
+      <div className="py-16 text-center">
+        <h2 className="text-xl font-semibold text-text">
+          No games played yet
+        </h2>
+
+        <p className="mt-2 text-sm text-slate-500">
+          Your completed Bingo games will appear here.
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen  text-white p-6 md:p-10 font-sans flex flex-col gap-8">
-      {/* Page Title */}
-      <h1 className="text-3xl md:text-4xl font-serif italic text-slate-100 tracking-wide">
-        Game history
-      </h1>
+    <div className="w-full text-text py-6 sm:px-6 md:px-8 lg:px-10">
+      <div className="max-w-7xl mx-auto">
+        {/* =====================================================
+            HEADER
+        ====================================================== */}
+        <HistoryHeader
+          onDelete={() => setShowDeleteConfirm(true)}
+          isDeleting={isDeleting}
+        />
 
-      {/* Overall Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
-        {/* Total Games */}
-        <div className="bg-twilight-500 border border-white/5 p-6 rounded-2xl flex flex-col gap-2 shadow-lg">
-          <span className="text-sm font-medium text-slate-400">
-            Total games
-          </span>
+        {/* =====================================================
+            STATS
+        ====================================================== */}
+        <HistoryStats
+          totalGames={totalGames}
+          totalWins={totalWins}
+          totalLosses={totalLosses}
+          winRate={winRate}
+        />
 
-          <span className="text-4xl font-bold text-white">{totalGames}</span>
-        </div>
-
-        {/* Total Won */}
-        <div className="bg-ocean-500 border border-white/5 p-6 rounded-2xl flex flex-col gap-2 shadow-lg">
-          <span className="text-sm font-medium text-slate-400">Total won</span>
-
-          <span className="text-4xl font-bold ">{totalWins}</span>
-        </div>
-
-        {/* Win Rate */}
-        <div className="bg-royal-900 border border-white/5 p-6 rounded-2xl flex flex-col gap-2 shadow-lg">
-          <span className="text-sm font-medium text-slate-400">Win rate</span>
-
-          <span className="text-4xl font-bold text-[#e0a94d]">{winRate}%</span>
+        {/* =====================================================
+            DAY-WISE HISTORY
+        ====================================================== */}
+        <div className="flex flex-col gap-10">
+          {Object.entries(groupedHistory).map(([dateKey, day]) => (
+            <HistoryDay key={dateKey} day={day} />
+          ))}
         </div>
       </div>
-
-      {/* Empty State */}
-      {history.length === 0 && (
-        <div className="py-16 text-center text-slate-400 bg-[#26303d]/50 rounded-2xl border border-white/5">
-          <p className="text-lg">No games played yet.</p>
-        </div>
-      )}
-
-      {/* Day-wise History */}
-      {Object.entries(groupedHistory).map(([dateKey, day]) => {
-        const dateLabel = getDateLabel(day.dateObj);
-
-        const dateSubtext = day.dateObj.toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-        });
-
-        return (
-          <div key={dateKey} className="flex flex-col gap-4 mt-2">
-            {/* Day Header */}
-            <div className="flex items-baseline gap-3 text-slate-300">
-              <h2 className="text-xl font-bold text-white">{dateLabel}</h2>
-
-              <span className="text-sm text-slate-400 font-medium">
-                {dateSubtext} · {day.games} {day.games === 1 ? "game" : "games"}{" "}
-                · {day.wins} won · {day.losses} lost
-              </span>
-            </div>
-
-            {/* Bingo Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {day.gamesList.map((saved, index) => {
-                const numbers = [...saved.pattern].sort(
-                  (a, b) => a.index - b.index,
-                );
-
-                const timeString = new Date(
-                  saved.created_at,
-                ).toLocaleTimeString([], {
-                  hour: "numeric",
-                  minute: "2-digit",
-                  hour12: true,
-                });
-
-                return (
-                  <div
-                    key={saved.id ?? index}
-                    className="bg-[#31525d] border border-white/5 rounded-2xl p-4 flex flex-col gap-4 shadow-xl hover:border-white/10 transition-colors"
-                  >
-                    {/* Bingo Card View */}
-                    <div className="w-full flex justify-center">
-                      <BingoCard
-                        mode="saved"
-                        numbers={numbers}
-                        theme={"#31525d"}
-                      />
-                    </div>
-
-                    {/* Card Footer: Time & Win/Loss Pill */}
-                    <div className="flex items-center justify-between pt-2 text-xs font-medium text-slate-400">
-                      <span>{timeString}</span>
-
-                      {saved.is_win ? (
-                        <span className="bg-[#128a71] text-emerald-100 px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                          <svg
-                            className="w-3.5 h-3.5 fill-current"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          Won vs bot
-                        </span>
-                      ) : (
-                        <span className="bg-[#334155]/80 text-slate-300 px-3 py-1 rounded-full flex items-center gap-1">
-                          Lost vs bot
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })}
+      <ConfirmDialog
+        show={showDeleteConfirm}
+        title="Delete game history?"
+        message="This will permanently delete all of your saved Bingo games. This action cannot be undone."
+        confirmText="Delete History"
+        onConfirm={handleDeleteHistory}
+        onCancel={() => setShowDeleteConfirm(false)}
+        isLoading={isDeleting}
+      />
     </div>
   );
 }

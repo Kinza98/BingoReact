@@ -1,0 +1,4 @@
+export const INACTIVITY_TIMEOUT = 15000;
+export const CALLED_NUMBER_TIMEOUT = 2000;
+export const BOT_TURN_DELAY = 1000;
+export const START_ANNOUNCEMENT_DURATION = 1400;

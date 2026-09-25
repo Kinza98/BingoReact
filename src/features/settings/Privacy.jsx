@@ -1,29 +1,30 @@
-import { HiShieldCheck } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
+import { HiShieldCheck } from "react-icons/hi";
 
 function Privacy() {
   const location = useLocation();
 
-  const isActive = location.hash === `#privacy`;
+  const isActive = location.hash === "#privacy";
+
   return (
     <>
-      <p className="text-slate-400 text-xs sm:text-sm font-bold tracking-wider uppercase mb-2.5">
+      <p className="mb-2.5 text-xs font-bold uppercase tracking-wider text-slate-400 sm:text-sm">
         Privacy
       </p>
 
       <div
-        className={`border border-white/10 rounded-2xl p-4 sm:p-5 flex gap-3 mb-6 transition-all duration-300 ${
+        className={`mb-6 flex gap-3 rounded-2xl border border-white/10 p-4 transition-all duration-300 sm:p-5 ${
           isActive ? "bg-white/10" : "bg-white/5"
         }`}
       >
-        <HiShieldCheck className="text-teal-400 text-lg sm:text-xl flex-shrink-0 mt-0.5" />
+        <HiShieldCheck className="mt-0.5 shrink-0 text-lg text-teal-400 sm:text-xl" />
 
-        <div>
-          <p className="text-white text-sm sm:text-base font-medium mb-1">
+        <div className="min-w-0">
+          <p className="mb-1 text-sm font-medium text-white sm:text-base">
             Your privacy matters
           </p>
 
-          <p className="text-slate-400 text-sm sm:text-base text-justify leading-relaxed m-0">
+          <p className="m-0 text-justify text-xs leading-relaxed text-slate-400 sm:text-sm sm:leading-relaxed">
             We respect your privacy and only collect and use the information
             needed to provide a smooth and secure gaming experience. Your
             account information is used to manage your profile, save your game

@@ -4,11 +4,14 @@ import LogoIcon from "./LogoIcon";
 function Logo() {
   return (
     <Link
-      to="/"
-      className="flex gap-1 items-center text-olive-200 font-primary text-xl md:text-2xl hover:text-white"
+      to="/game"
+      className="group flex items-center gap-1 font-primary text-xl text-olive-200 transition-all duration-200 hover:text-white sm:text-2xl"
     >
-      <LogoIcon variant="teal" />
-      BINGO
+      <span className="transition-transform duration-200 group-hover:-rotate-6">
+        <LogoIcon variant="teal" />
+      </span>
+
+      <span>BINGO</span>
     </Link>
   );
 }
