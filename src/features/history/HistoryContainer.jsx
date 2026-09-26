@@ -37,8 +37,6 @@ function HistoryContainer() {
     )}-${String(dateObj.getDate()).padStart(2, "0")}`;
   };
 
-  
-
   const groupedHistory = history.reduce((acc, game) => {
     const dateObj = new Date(game.created_at);
     const dateKey = getDateKey(game.created_at);
@@ -75,7 +73,7 @@ function HistoryContainer() {
 
   if (error) {
     return (
-      <div className="p-5 rounded-2xl bg-[#491a1a]/30 border border-[#a35b78]/20 text-[#d5a9ba]">
+      <div className="rounded-2xl border border-[#a35b78]/20 bg-[#491a1a]/30 p-5 text-[#d5a9ba]">
         <p className="text-sm">
           Something went wrong while loading your history.
         </p>
@@ -86,11 +84,11 @@ function HistoryContainer() {
   if (!history.length) {
     return (
       <div className="py-16 text-center">
-        <h2 className="text-xl font-semibold text-text">
+        <h2 className="text-xl font-semibold text-slate-900 dark:text-text">
           No games played yet
         </h2>
 
-        <p className="mt-2 text-sm text-slate-500">
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-500">
           Your completed Bingo games will appear here.
         </p>
       </div>
@@ -98,8 +96,8 @@ function HistoryContainer() {
   }
 
   return (
-    <div className="w-full text-text py-6 sm:px-6 md:px-8 lg:px-10">
-      <div className="max-w-7xl mx-auto">
+    <div className="w-full py-6 text-slate-900 sm:px-6 md:px-8 lg:px-10 dark:text-text">
+      <div className="mx-auto max-w-7xl">
         {/* =====================================================
             HEADER
         ====================================================== */}
@@ -127,6 +125,7 @@ function HistoryContainer() {
           ))}
         </div>
       </div>
+
       <ConfirmDialog
         show={showDeleteConfirm}
         title="Delete game history?"

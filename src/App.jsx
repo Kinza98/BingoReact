@@ -18,26 +18,11 @@ import { HiCheckCircle } from "react-icons/hi";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import { GameThemeProvider } from "./contexts/GameThemeContext";
+import PlayFriends from "./pages/PlayFriends";
+import MultiplayerWaiting from "./features/multiplayer/MultiplayerWaiting";
+import MultiplayerGame from "./features/multiplayer/MultiplayerGame";
 
 function App() {
-  // const [isDark, setIsDark] = useDarkMode();
-  // const [isLoading, setIsLoading] = useState(
-  //   () => !sessionStorage.getItem("hasSeenLoader"),
-  // );
-
-  // useEffect(() => {
-  //   if (!isLoading) return;
-
-  //   const timer = setTimeout(() => {
-  //     sessionStorage.setItem("hasSeenLoader", "true");
-  //     setIsLoading(false);
-  //   }, 2000);
-
-  //   return () => clearTimeout(timer);
-  // }, [isLoading]);
-
-  // if (isLoading) return <Loader />;
-
   return (
     <>
       <Toaster
@@ -88,6 +73,15 @@ function App() {
                 <Route path="write" element={<WriteNumbers />} />
                 <Route path="saved" element={<Saved />} />
                 <Route path="play" element={<Play />} />
+                <Route path="multiplayer" element={<PlayFriends />} />
+                <Route
+                  path="multiplayer/:gameId"
+                  element={<MultiplayerWaiting />}
+                />
+                <Route
+                  path="multiplayer/:gameId/play"
+                  element={<MultiplayerGame />}
+                />
                 <Route path="settings" element={<Settings />} />
                 <Route path="history" element={<History />} />
               </Route>

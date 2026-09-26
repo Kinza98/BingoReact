@@ -20,7 +20,7 @@ function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-4 sm:px-6 md:py-5 transition-all duration-300 ${
         scrolled
-          ? "bg-neon-900/95 shadow-md backdrop-blur-sm"
+          ? "bg-[#bacdd3] dark:bg-neon-900/95 shadow-md backdrop-blur-sm"
           : "bg-transparent"
       }`}
     >

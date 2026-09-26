@@ -86,7 +86,7 @@ function SettingsContainer() {
           <Button
             onClick={exit}
             variant="wine"
-            classes="flex w-full items-center justify-center gap-2  text-red-400 md:hidden"
+            classes="flex w-full items-center justify-center gap-2 text-red-400 md:hidden"
           >
             <HiArrowLeftOnRectangle className="text-lg" />
             {isGuest ? "Exit" : "Log out"}

@@ -63,7 +63,7 @@ function Main() {
             <span className="hidden md:inline">Change Card</span>
           </Button>
 
-          <Button to="/play-friends" variant="plum">
+          <Button to="/multiplayer" variant="plum">
             <HiUserAdd />
             <span className="hidden md:inline">Invite Friends</span>
           </Button>
@@ -77,7 +77,7 @@ function Main() {
             <HiCog />
             <span className="hidden md:inline">Settings</span>
           </Button>
-            <HiPlay />
+          <HiPlay />
         </div>
       </div>
     </div>

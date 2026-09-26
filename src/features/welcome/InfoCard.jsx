@@ -2,7 +2,7 @@ import OrderedListItem from "../../components/ui/OrderedListItem";
 
 function InfoCard() {
   return (
-    <ol className="my-3 w-full max-w-175 space-y-2 rounded-xl border-2 border-[rgba(255,255,255,0.15)] bg-white/10 px-4 py-5 text-justify font-secondary text-sm leading-relaxed text-slate-200 shadow-xl sm:my-5 sm:px-8 sm:py-7 sm:text-base md:my-7 md:px-10 md:py-9 md:text-lg">
+    <ol className="my-3 w-full max-w-175 space-y-2 rounded-xl border-2 border-ocean-500/20 bg-ocean-500/30 px-4 py-5 text-justify font-secondary text-sm leading-relaxed text-slate-800 shadow-xl dark:border-[rgba(255,255,255,0.15)] dark:bg-white/10 dark:text-slate-200 sm:my-5 sm:px-8 sm:py-7 sm:text-base md:my-7 md:px-10 md:py-9 md:text-lg">
       <OrderedListItem number={1}>
         <strong>Get your card</strong> — Each player gets a card with 25
         numbers, shuffled fresh for every round.

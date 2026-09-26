@@ -58,7 +58,19 @@ function BingoGame({ mode = "play", theme, savePattern }) {
       <Button
         disabled={!isFilled}
         onClick={handleSave}
-        classes="disabled:bg-surface/50 disabled:cursor-none bg-surface mt-0 !justify-center"
+        classes="
+          disabled:bg-slate-300/50
+          disabled:cursor-none
+          bg-slate-300
+          text-slate-900
+          hover:bg-slate-400
+          mt-0
+          !justify-center
+          dark:disabled:bg-surface/50
+          dark:bg-surface
+          dark:text-white
+          dark:hover:bg-surface
+        "
       >
         Save
       </Button>

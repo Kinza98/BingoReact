@@ -2,11 +2,11 @@ function StatsCard({
   label,
   value,
   description,
-  valueColor = "text-text",
-  backgroundColor = "bg-surface",
-  borderColor = "border-border",
-  labelColor = "text-text-muted",
-  descriptionColor = "text-text-subtle",
+  valueColor = "text-slate-900 dark:text-text",
+  backgroundColor = "bg-slate-200/80 dark:bg-surface",
+  borderColor = "border-slate-400/30 dark:border-border",
+  labelColor = "text-slate-700 dark:text-text-muted",
+  descriptionColor = "text-slate-600 dark:text-text-subtle",
   extra,
 }) {
   return (

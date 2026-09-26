@@ -57,7 +57,8 @@ function SignInForm() {
         />
         <Link
           to="/forgot-password"
-          className="text-white/50 tracking-wide text-right inline underline text-sm sm:text-base"
+          state={{ animate: true }}
+          className="dark:text-white/50 text-slate-700 hover:text-amber tracking-wide text-right inline underline text-sm sm:text-base"
         >
           Forgot Password ?
         </Link>
@@ -72,9 +73,13 @@ function SignInForm() {
           "Log in"
         )}
       </Button>
-      <span className="text-white/50  block -mt-3 text-sm sm:text-base">
+      <span className="dark:text-white/50 text-slate-700  block -mt-3 text-sm sm:text-base">
         Don't have an account?
-        <Link to="/signup" className="text-amber underline ml-1">
+        <Link
+          to="/signup"
+          state={{ animate: true }}
+          className="text-amber underline ml-1"
+        >
           Sign up
         </Link>
       </span>

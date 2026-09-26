@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useBingoContext } from "../../contexts/BingoProviderContext";
@@ -26,8 +26,8 @@ const patterns = [
     9, 14, 19, 24,
   ],
   [
-    20, 15, 10, 5, 0, 21, 16, 11, 6, 1, 22, 17, 12, 7, 2, 23, 18, 13, 8, 3, 24,
-    19, 14, 9, 4,
+    20, 15, 10, 5, 0, 21, 16, 11, 6, 1, 22, 17, 16, 13, 8, 3, 24, 19, 14, 9,
+    4,
   ],
   [
     0, 6, 12, 18, 24, 1, 7, 13, 19, 2, 8, 14, 20, 3, 9, 15, 21, 4, 10, 16, 22,
@@ -51,29 +51,65 @@ function CardSetup() {
 
   const isWriteMode = mode === "write";
   const hasSavedCards = savedCards?.length > 0;
-  const cards = hasSavedCards ? savedCards : patterns;
-  const totalCards = cards.length;
-  const hasMultipleCards = totalCards > 1;
-  const currentCard = cards[currentPattern];
 
-  // Get the numbers for the current card.
+  const totalSavedCards = savedCards?.length ?? 0;
+  const hasMultipleCards = totalSavedCards > 1;
+
+  /*
+   * Keep the current saved-card index valid when cards are deleted.
+   *
+   * Example:
+   * [A, B] -> currentPattern = 1
+   * delete B
+   * [A] -> currentPattern becomes 0
+   */
+  useEffect(() => {
+    if (!hasSavedCards) {
+      setCurrentPattern(0);
+      return;
+    }
+
+    setCurrentPattern((current) =>
+      Math.min(current, totalSavedCards - 1),
+    );
+  }, [hasSavedCards, totalSavedCards]);
+
+  const currentSavedCard = savedCards?.[currentPattern];
+
+  /*
+   * Get the numbers that should currently be displayed.
+   */
   let previewNumbers = [];
 
   if (isShuffled) {
     previewNumbers = numbers ?? [];
-  } else if (hasSavedCards) {
-    previewNumbers = currentCard?.pattern ?? [];
-  } else if (numbers?.length === 25 && Array.isArray(currentCard)) {
-    previewNumbers = currentCard.map((index) => numbers[index]);
-  } else {
+  } else if (isWriteMode) {
     previewNumbers = numbers ?? [];
+  } else if (hasSavedCards) {
+    previewNumbers = currentSavedCard?.pattern ?? [];
+  } else {
+    /*
+     * No saved cards:
+     * show the normal preview using the current generated numbers.
+     */
+    const currentPatternIndexes = patterns[currentPattern] ?? patterns[0];
+
+    if (numbers?.length === 25) {
+      previewNumbers = currentPatternIndexes.map(
+        (index) => numbers[index],
+      );
+    } else {
+      previewNumbers = numbers ?? [];
+    }
   }
 
   const savedCard = savedCards?.find(
     (card) =>
       Array.isArray(card.pattern) &&
       card.pattern.length === 25 &&
-      card.pattern.every((number, index) => number === previewNumbers[index]),
+      card.pattern.every(
+        (number, index) => number === previewNumbers[index],
+      ),
   );
 
   const isCurrentCardSaved = Boolean(savedCard);
@@ -92,8 +128,8 @@ function CardSetup() {
 
   function handleRefresh() {
     refreshOrder();
+
     setIsShuffled(true);
-    setCurrentPattern(0);
     setSelectedPattern(null);
     setMode("preview");
     setShowSelectMessage(false);
@@ -101,6 +137,8 @@ function CardSetup() {
 
   function handleWrite() {
     setMode("write");
+    setIsShuffled(false);
+    setSelectedPattern(null);
     setShowSelectMessage(false);
   }
 
@@ -109,7 +147,7 @@ function CardSetup() {
 
     setIsShuffled(false);
     setCurrentPattern((current) =>
-      current === 0 ? totalCards - 1 : current - 1,
+      current === 0 ? totalSavedCards - 1 : current - 1,
     );
     setSelectedPattern(null);
     setShowSelectMessage(false);
@@ -120,14 +158,14 @@ function CardSetup() {
 
     setIsShuffled(false);
     setCurrentPattern((current) =>
-      current === totalCards - 1 ? 0 : current + 1,
+      current === totalSavedCards - 1 ? 0 : current + 1,
     );
     setSelectedPattern(null);
     setShowSelectMessage(false);
   }
 
   function handlePatternNavigation(index) {
-    if (index < 0 || index >= totalCards) return;
+    if (index < 0 || index >= totalSavedCards) return;
 
     setIsShuffled(false);
     setCurrentPattern(index);
@@ -159,6 +197,7 @@ function CardSetup() {
     saveCard(numbers);
     setNumbers(numbers);
     setMode("preview");
+    setIsShuffled(false);
   }
 
   function handleBackToSavedCards() {
@@ -166,6 +205,7 @@ function CardSetup() {
     setCurrentPattern(0);
     setSelectedPattern(null);
     setShowSelectMessage(false);
+    setMode("preview");
   }
 
   if (isSaving || isDeleting) {
@@ -173,32 +213,63 @@ function CardSetup() {
   }
 
   return (
-    <div className="mx-auto flex min-h-full w-full max-w-5xl flex-col items-center px-2.5 py-4 font-secondary text-white xs:px-3 xs:py-5 sm:px-5 sm:py-7">
+    <div className="mx-auto flex min-h-full w-full max-w-5xl flex-col items-center px-2.5 py-4 font-secondary text-slate-900 xs:px-3 xs:py-5 sm:px-5 sm:py-7 dark:text-white">
       <CardSetupHeader
         isWriteMode={isWriteMode}
         selectedPattern={selectedPattern}
       />
 
       {showSelectMessage && (
-        <CardSelectionMessage onClose={() => setShowSelectMessage(false)} />
+        <CardSelectionMessage
+          onClose={() => setShowSelectMessage(false)}
+        />
       )}
 
-      <CardSetupCarousel
-        isWriteMode={isWriteMode}
-        isShuffled={isShuffled}
-        currentPattern={currentPattern}
-        totalCards={totalCards}
-        selectedPattern={selectedPattern}
-        mode={mode}
-        previewNumbers={previewNumbers}
-        isCurrentCardSaved={isCurrentCardSaved}
-        onPrevious={handlePrevious}
-        onNext={handleNext}
-        onSelect={handlePatternNavigation}
-        onCardClick={handleCardClick}
-        onBookmark={handleBookmark}
-        onSavePattern={handleSavePattern}
-      />
+      {/* Only show the carousel when saved cards exist */}
+      {hasSavedCards ? (
+        <CardSetupCarousel
+          isWriteMode={isWriteMode}
+          isShuffled={isShuffled}
+          currentPattern={currentPattern}
+          totalCards={totalSavedCards}
+          selectedPattern={selectedPattern}
+          mode={mode}
+          previewNumbers={previewNumbers}
+          isCurrentCardSaved={isCurrentCardSaved}
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          onSelect={handlePatternNavigation}
+          onCardClick={handleCardClick}
+          onBookmark={handleBookmark}
+          onSavePattern={handleSavePattern}
+        />
+      ) : (
+        /*
+         * No saved cards:
+         * CardSetupCarousel should not be rendered at all.
+         *
+         * Your carousel component should have a preview/card component
+         * that can be rendered here. If the carousel itself currently
+         * contains that preview, move that preview into a separate
+         * component and render it here.
+         */
+        <CardSetupCarousel
+          isWriteMode={isWriteMode}
+          isShuffled={isShuffled}
+          currentPattern={0}
+          totalCards={1}
+          selectedPattern={selectedPattern}
+          mode={mode}
+          previewNumbers={previewNumbers}
+          isCurrentCardSaved={false}
+          onPrevious={() => {}}
+          onNext={() => {}}
+          onSelect={() => {}}
+          onCardClick={handleCardClick}
+          onBookmark={handleBookmark}
+          onSavePattern={handleSavePattern}
+        />
+      )}
 
       {(isShuffled || isWriteMode) && hasSavedCards && (
         <SavedCardsBackButton onBack={handleBackToSavedCards} />

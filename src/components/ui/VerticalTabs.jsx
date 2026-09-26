@@ -25,10 +25,10 @@ function Tab({ value, children, icon }) {
     <button
       type="button"
       onClick={() => navigate(`#${value}`)}
-      className={`flex my-2 cursor-pointer items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-base font-semibold transition-all duration-200 ${
+      className={`my-2 flex cursor-pointer items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-base font-semibold transition-all duration-200 ${
         isActive
-          ? "bg-teal-500/15 text-teal-400"
-          : "text-slate-400 hover:bg-white/5 hover:text-slate-200"
+          ? "bg-teal-500/15 text-teal-700 dark:text-teal-400"
+          : "text-slate-600 hover:bg-slate-300/50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-slate-200"
       }`}
     >
       {icon}
@@ -40,7 +40,7 @@ function Tab({ value, children, icon }) {
 function Section({ value, children }) {
   return (
     <section id={value} className="scroll-mt-6">
-      <div className={` overflow-hidden mb-6 transition-all duration-300 `}>
+      <div className="mb-6 overflow-hidden transition-all duration-300">
         {children}
       </div>
     </section>

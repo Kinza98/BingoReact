@@ -1,7 +1,13 @@
+import BingoBackground from "../components/ui/BingoBackground";
 import MainContainer from "../features/main/MainContainer";
 
 function Main() {
-  return <MainContainer />;
+  return (
+    <>
+      <BingoBackground />
+      <MainContainer />
+    </>
+  );
 }
 
 export default Main;

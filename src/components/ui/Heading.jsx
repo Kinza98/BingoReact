@@ -7,7 +7,8 @@ function Heading({ as, classes = "", children }) {
     text-3xl
     font-primary
     tracking-wider
-    text-white
+    text-slate-700
+    dark:text-white
     mx-auto
     sm:text-4xl
     md:text-5xl

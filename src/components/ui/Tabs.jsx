@@ -13,7 +13,11 @@ function Tabs({ children, id }) {
 }
 
 function List({ children }) {
-  return <div className="rounded-lg sm:rounded-full bg-white/10 xs:p-1">{children}</div>;
+  return (
+    <div className="rounded-lg md:mt-2  p-1 sm:rounded-lg bg-white/20">
+      {children}
+    </div>
+  );
 }
 
 function Tab({ children, id }) {
@@ -25,9 +29,15 @@ function Tab({ children, id }) {
     <button
       type="button"
       onClick={() => setActiveTab(id)}
-      className={`
-        px-2 xxs:px-3 xs:px-5 py-2.5 rounded-lg xs:py-3 font-secondary duration-100 transition-all cursor-pointer sm:rounded-full md:text-lg text-base
-        ${isActive ? "text-white bg-amber/90 " : "text-white/70 bg-transparent"}
+      className={` 
+        cursor-pointer rounded-lg px-2 py-2.5 font-secondary text-base
+        transition-all duration-100 xs:rounded-full xs:px-5 xs:py-3
+        xxs:px-3 sm:rounded-lg md:text-lg
+        ${
+          isActive
+            ? "bg-amber/90 text-white"
+            : "bg-transparent text-slate-700 hover:bg-slate-300/60 dark:text-white/70 dark:hover:bg-white/5"
+        }
       `}
     >
       {children}

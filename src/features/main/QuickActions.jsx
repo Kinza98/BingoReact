@@ -19,7 +19,7 @@ function QuickActions() {
         <span>Change Card</span>
       </Button>
 
-      <Button to="/game/play-friends" style="glass" rounded="rounded-[100px]">
+      <Button to="/game/multiplayer" style="glass" rounded="rounded-[100px]">
         <HiUserAdd className="shrink-0" />
         <span>Invite Friends</span>
       </Button>

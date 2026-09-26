@@ -86,9 +86,9 @@ const defaultCards = [
 ];
 
 export async function saveDefaultCards(userId) {
-  const cards = defaultCards.map((numbers) => ({
+  const cards = defaultCards.map((pattern) => ({
     user_id: userId,
-    numbers,
+    pattern,
     is_default: true,
   }));
 

@@ -20,7 +20,7 @@ function CardSetupCarousel({
 }) {
   return (
     <div className="relative flex w-full min-w-0 items-center justify-center">
-      {!isWriteMode && <CardSetupDecoration position="left" />}
+      {/* {!isWriteMode && <CardSetupDecoration position="left" />} */}
 
       <Carousel
         currentIndex={currentPattern}
@@ -45,7 +45,7 @@ function CardSetupCarousel({
         />
       </Carousel>
 
-      {!isWriteMode && <CardSetupDecoration position="right" />}
+      {/* {!isWriteMode && <CardSetupDecoration position="right" />} */}
     </div>
   );
 }

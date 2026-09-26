@@ -7,7 +7,7 @@ import BlobBackground from "../components/ui/BlobBackground";
 
 function Welcome() {
   return (
-    <div className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-slate px-5 py-7 font-secondary sm:px-7">
+    <div className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-slate-300 px-5 py-7 font-secondary dark:bg-slate sm:px-7">
       <BlobBackground />
 
       <Heading as="h1">
@@ -17,13 +17,14 @@ function Welcome() {
         </span>
       </Heading>
 
-      <p className="mt-3 max-w-xl text-center text-sm text-slate-300 sm:mt-5 sm:text-lg md:mt-6 md:text-xl md:tracking-wide">
+      <p className="mt-3 max-w-xl text-center text-sm text-slate-700 dark:text-slate-300 sm:mt-5 sm:text-lg md:mt-6 md:text-xl md:tracking-wide">
         Mark your numbers. Race the line. Shout first.
       </p>
 
       <InfoCard />
 
-      <Button to="/game" style="game">
+      <Button to="/game" state={{ animate: true }} style="game">
+        {" "}
         Let the Game Begin
       </Button>
     </div>

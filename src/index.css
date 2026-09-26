@@ -1,6 +1,29 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+:root {
+  --app-background: #f5f7f8;
+  --app-surface: #ffffff;
+  --app-surface-secondary: #e8eef0;
+
+  --app-text: #1f2933;
+  --app-text-muted: #647b84;
+  --app-text-subtle: #82939a;
+
+  --app-border: rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --app-background: #0d1b2a;
+  --app-surface: #18282d;
+  --app-surface-secondary: #263b44;
+
+  --app-text: #ffffff;
+  --app-text-muted: #8da5ae;
+  --app-text-subtle: #647b84;
+
+  --app-border: rgba(255, 255, 255, 0.1);
+}
 @theme {
   --breakpoint-xxs: 21rem;
   --breakpoint-xs: 30rem;
@@ -9,15 +32,15 @@
   --color-secondary: #4b255e;
 
   /* App UI theme */
-  --color-background: #0d1b2a;
-  --color-surface: #18282d;
-  --color-surface-secondary: #263b44;
+  --color-background: var(--app-background);
+  --color-surface: var(--app-surface);
+  --color-surface-secondary: var(--app-surface-secondary);
 
-  --color-text: #ffffff;
-  --color-text-muted: #8da5ae;
-  --color-text-subtle: #647b84;
+  --color-text: var(--app-text);
+  --color-text-muted: var(--app-text-muted);
+  --color-text-subtle: var(--app-text-subtle);
 
-  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border: var(--app-border);
 
   --color-player: #6a838f;
   --color-bot: #967c9b;
@@ -92,6 +115,46 @@
   --animate-turn-pulse: turn-pulse 1.8s ease-in-out infinite;
   --animate-number-pop: number-pop 0.45s cubic-bezier(0.2, 1.5, 0.4, 1) both;
   --animate-confetti-explode: confetti-explode ease-out forwards;
+  --animate-ball-pop: ball-pop 0.5s ease-out backwards;
+  --animate-slide-in: slide-in 0.2s ease-out;
+  @keyframes slide-in {
+    from {
+      transform: translateX(100%);
+    }
+
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes ball-pop {
+    0% {
+      transform: scale(0) rotate(-30deg);
+      opacity: 0;
+    }
+
+    70% {
+      transform: scale(1.15) rotate(8deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
 
   @keyframes start-game {
     0% {

@@ -55,6 +55,7 @@ function ActionButton({
         className={`
           mt-0.5 hidden text-[10px]
           sm:block
+          
           ${descriptionClassName}
         `}
       >

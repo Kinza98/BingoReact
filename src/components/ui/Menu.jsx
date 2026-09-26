@@ -47,8 +47,8 @@ function Trigger({ children }) {
       onClick={toggleMenu}
       className={`group/menu flex cursor-pointer items-center gap-2 rounded-full border px-1.5 py-1.5 transition-all duration-200 sm:pr-4 ${
         isOpen
-          ? "border-white/20 bg-white/10"
-          : "border-white/10 bg-white/6 hover:border-white/20 hover:bg-white/10 "
+          ? "border-slate-500/20 bg-slate-300/70 dark:border-white/20 dark:bg-white/10"
+          : "border-slate-500/15 bg-slate-300/50 hover:border-slate-500/25 hover:bg-slate-300/70 dark:border-white/10 dark:bg-white/6 dark:hover:border-white/20 dark:hover:bg-white/10"
       }`}
     >
       {children}
@@ -67,8 +67,8 @@ function Content({ children }) {
         absolute right-0 top-full z-50 mt-3
         w-64 max-w-[calc(100vw-2rem)]
         overflow-hidden rounded-2xl
-        border border-white/10
-        bg-neon-900/95
+        border border-slate-500/20 dark:border-white/10
+        bg-[#bacdd3] dark:bg-neon-900/95
         p-2
         shadow-xl
         backdrop-blur-lg
@@ -92,9 +92,10 @@ function Item({ children, to, onClick, variant }) {
 
   const className = `group/item flex w-full cursor-pointer items-center rounded-xl px-3 py-3 text-left text-sm sm:text-base transition-all duration-200 ${
     isDanger
-      ? "mt-1 border-t border-white/10 rounded-t-none text-theme-red hover:bg-theme-red/10"
-      : "text-white/80 hover:bg-white/6 hover:text-amber"
+      ? "mt-1 border-t border-slate-500/20 dark:border-white/10 rounded-t-none text-theme-red hover:bg-theme-red/10"
+      : "text-slate-800 hover:bg-slate-300/70 hover:text-amber dark:text-white/80 dark:hover:bg-white/6 dark:hover:text-amber"
   }`;
+
   if (to) {
     return (
       <Link to={to} onClick={handleClick} className={className}>

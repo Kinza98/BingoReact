@@ -18,19 +18,23 @@ function SignupForm() {
     e.preventDefault();
 
     if (!name.trim() || !email.trim() || !password.trim()) return;
+
     if (validateEmail(email) !== "") {
       toast.error(validateEmail(email));
       return;
     }
+
     if (validatePassword(password) !== "") {
       toast.error(validatePassword(password));
       return;
     }
+
     signupFun({ name, email, password });
   }
+
   return (
     <form
-      className="mt-5 md:mt-8 w-full max-w-200 text-center space-y-4 md:space-y-5 min-h-60"
+      className="mt-5 min-h-60 w-full max-w-200 space-y-4 text-center md:mt-8 md:space-y-5"
       onSubmit={handleSubmit}
     >
       <div className="flex gap-3 sm:gap-5">
@@ -50,6 +54,7 @@ function SignupForm() {
           id="name"
         />
       </div>
+
       <InputField
         type="password"
         value={password}
@@ -57,6 +62,7 @@ function SignupForm() {
         label="Password"
         id="password"
       />
+
       <Button
         type="submit"
         style="game"
@@ -64,16 +70,21 @@ function SignupForm() {
         classes=""
       >
         {isLoading ? (
-          <span className="mx-auto w-fit block">
+          <span className="mx-auto block w-fit">
             <Spinner size="sm" />
           </span>
         ) : (
           "Sign up"
         )}
       </Button>
-      <span className="text-white/50  block -mt-3 text-sm sm:text-base">
+
+      <span className="block -mt-3 text-sm text-slate-700 sm:text-base dark:text-white/50">
         Already have an account?
-        <Link to="/signin" className="text-amber underline ml-1">
+        <Link
+          to="/signin"
+          state={{ animate: true }}
+          className="ml-1 text-amber underline"
+        >
           Sign in
         </Link>
       </span>

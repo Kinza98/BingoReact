@@ -4,31 +4,32 @@ import { useGameTheme } from "../../contexts/GameThemeContext";
 
 function BotMessage({ message, botName }) {
   const { theme: GAME_THEME } = useGameTheme();
+
   return (
-    <div className="mt-5 sm:mt-6 flex items-center justify-center gap-2 xs:gap-3 animate-result-text">
-      <div className="w-10 h-10 shrink-0 flex items-center justify-center">
+    <div className="mt-5 flex items-center justify-center gap-2 animate-result-text xs:gap-3 sm:mt-6">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center">
         <FemaleBingoBot
           showFullRobot={false}
-          className="w-full h-full object-contain"
+          className="h-full w-full object-contain"
         />
       </div>
 
       <div
-        className="relative min-w-0 max-w-[230px] border rounded-2xl rounded-bl-sm px-3 py-2.5"
+        className="relative min-w-0 max-w-[230px] rounded-2xl rounded-bl-sm border px-3 py-2.5"
         style={{
           backgroundColor: GAME_THEME.surfaceLight,
           borderColor: GAME_THEME.botBorder,
         }}
       >
         <span
-          className="block text-[8px] uppercase tracking-widest text-left mb-0.5"
+          className="mb-0.5 block text-left text-[8px] uppercase tracking-widest"
           style={{ color: GAME_THEME.muted }}
         >
           {botName}
         </span>
 
         <p
-          className="text-[11px] xs:text-xs sm:text-sm italic text-left leading-relaxed"
+          className="text-left text-[11px] italic leading-relaxed xs:text-xs sm:text-sm"
           style={{ color: GAME_THEME.text }}
         >
           {message}

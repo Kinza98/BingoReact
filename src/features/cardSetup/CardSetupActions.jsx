@@ -19,11 +19,12 @@ function CardSetupActions({ onWrite, onRefresh, onStartPlaying }) {
             md:min-w-40
             border border-neon-500
             bg-neon-500/50
-            hover:bg-neon-500
+            hover:dark:bg-neon-500
+            hover:bg-neon-500/60
           "
-          iconClassName="bg-neon-800 group-hover:bg-gray-900"
+          iconClassName="bg-neon-800 group-hover:dark:bg-gray-900"
           titleClassName="text-slate-300"
-          descriptionClassName="text-slate-500"
+          descriptionClassName="dark:text-slate-500  text-slate-300"
         />
 
         {/* Shuffle */}
@@ -42,9 +43,9 @@ function CardSetupActions({ onWrite, onRefresh, onStartPlaying }) {
             bg-success/70
             hover:bg-success
           "
-          iconClassName="bg-neon-800 group-hover:bg-neon-700"
+          iconClassName="bg-neon-800 group-hover:dark:bg-neon-700"
           titleClassName="text-slate-300"
-          descriptionClassName="text-text/50"
+          descriptionClassName="dark:text-text/50 text-slate-300"
         />
 
         {/* Start Playing */}

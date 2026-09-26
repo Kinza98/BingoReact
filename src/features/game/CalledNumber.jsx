@@ -17,10 +17,10 @@ function CalledNumber({ calledBy, currentNumber }) {
         }}
       >
         <span
-          className="text-[10px] xs:text-xs sm:text-sm font-semibold"
-          style={{
-            color: calledBy === "you" ? GAME_THEME.text : GAME_THEME.muted,
-          }}
+          className={`text-[10px] xs:text-xs sm:text-sm font-semibold ${calledBy === "you" ? `text-white dark:text-${GAME_THEME.text}` : `text-slate-200 dark:text-${GAME_THEME.muted}`}`}
+          // style={{
+          //   color: calledBy === "you" ? GAME_THEME.text : GAME_THEME.muted,
+          // }}
         >
           {calledBy === "you" ? "You called" : "Bot called"}
         </span>

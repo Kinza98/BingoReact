@@ -206,9 +206,8 @@ function GamePlay() {
 
   return (
     <div
-      className="min-h-full relative w-full overflow-x-hidden mt-10 md:mt-0"
+      className="relative mt-10 min-h-full w-full overflow-x-hidden md:mt-0"
       style={{
-        backgroundColor: GAME_THEME.page,
         color: GAME_THEME.text,
       }}
     >
@@ -242,7 +241,7 @@ function GamePlay() {
         <CalledNumber calledBy={calledBy} currentNumber={currentNumber} />
       )}
 
-      <div className="relative z-10 w-full flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-9 px-3 xs:px-4 sm:px-6 lg:px-8 xl:px-10 pb-6 lg:items-start lg:justify-center">
+      <div className="relative z-10 flex w-full flex-col gap-6 px-3 pb-6 xs:px-4 sm:gap-8 sm:px-6 lg:flex-row lg:items-start lg:justify-center lg:gap-9 lg:px-8 xl:px-10">
         <GameCard
           type="player"
           name={playerName}

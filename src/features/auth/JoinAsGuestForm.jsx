@@ -36,7 +36,7 @@ function JoinAsGuestForm() {
             <Spinner size="sm" />
           </span>
         ) : (
-          "Join"
+          "Join the game"
         )}
       </Button>
     </form>

@@ -21,7 +21,7 @@ function GameCard({ type, name, numbers, score, isTurn, onClick }) {
       : "Waiting";
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-3">
+    <div className="mx-auto w-full max-w-md space-y-3">
       {/* Header */}
       <div className="flex items-center gap-2 px-1">
         <div className="relative shrink-0">
@@ -33,21 +33,24 @@ function GameCard({ type, name, numbers, score, isTurn, onClick }) {
           />
 
           <div
-            className="relative w-9 h-9 rounded-full border flex items-center justify-center overflow-hidden"
+            className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border"
             style={{
-              backgroundColor: `${gameTheme}${isPlayer ? "40" : "30"}`,
               borderColor: borderTheme,
+              background: gameTheme,
             }}
           >
             {isPlayer ? (
-              <span className="text-sm font-bold" style={{ color: theme.text }}>
+              <span
+                className={`text-sm font-bold `}
+                style={{ color: theme.text }}
+              >
                 {name.charAt(0).toUpperCase()}
               </span>
             ) : (
-              <div className="w-10 h-10 shrink-0 flex items-center justify-center">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center">
                 <FemaleBingoBot
                   showFullRobot={false}
-                  className="w-full h-full object-contain"
+                  className="h-full w-full object-contain"
                 />
               </div>
             )}
@@ -56,7 +59,7 @@ function GameCard({ type, name, numbers, score, isTurn, onClick }) {
 
         <div className="min-w-0">
           <span
-            className="block text-sm xs:text-base font-semibold truncate"
+            className="block truncate text-sm font-semibold xs:text-base"
             style={{
               color: isPlayer ? theme.text : `${theme.text}cc`,
             }}
@@ -69,12 +72,12 @@ function GameCard({ type, name, numbers, score, isTurn, onClick }) {
             style={{ color: theme.muted }}
           >
             <span
-              className={`w-1.5 h-1.5 rounded-full ${
+              className={`h-1.5 w-1.5 rounded-full ${
                 isTurn
                   ? isPlayer
-                    ? "bg-green-400"
-                    : "bg-green-400 animate-pulse"
-                  : "bg-white/20"
+                    ? "dark:bg-green-400 bg-green-600"
+                    : "animate-pulse dark:bg-green-400 bg-green-600"
+                  : "bg-slate-400/40 dark:bg-white/20"
               }`}
             />
 

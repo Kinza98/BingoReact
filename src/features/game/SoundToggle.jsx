@@ -1,23 +1,27 @@
 import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
+import { useGameTheme } from "../../contexts/GameThemeContext";
 
 function SoundToggle({ soundOn, onToggle }) {
+  const { theme: GAME_THEME } = useGameTheme();
+
   return (
     <button
       type="button"
       onClick={onToggle}
       aria-label={soundOn ? "Turn sound off" : "Turn sound on"}
       title={soundOn ? "Turn sound off" : "Turn sound on"}
-      className="fixed bottom-4 cursor-pointer left-4 z-40 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
+      className="fixed bottom-4 left-4 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border transition-all duration-200 hover:scale-105 active:scale-95"
       style={{
-        backgroundColor: "rgba(24, 47, 54, 0.85)",
-        border: "1px solid rgba(255, 255, 255, 0.12)",
-        color: soundOn ? "#e8a33d" : "#9db2b7",
+        backgroundColor: `${GAME_THEME.surface}e8`,
+        borderColor: GAME_THEME.playerBorder,
+        color: soundOn ? GAME_THEME.accent : GAME_THEME.muted,
+        boxShadow: `0 4px 15px ${GAME_THEME.playerGlow}`,
       }}
     >
       {soundOn ? (
-        <HiVolumeUp className="w-5 h-5" />
+        <HiVolumeUp className="h-5 w-5" />
       ) : (
-        <HiVolumeOff className="w-5 h-5" />
+        <HiVolumeOff className="h-5 w-5" />
       )}
     </button>
   );

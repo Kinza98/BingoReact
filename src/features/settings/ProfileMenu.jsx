@@ -38,7 +38,7 @@ function ProfileMenu() {
             {name[0]?.toUpperCase()}
           </span>
 
-          <span className="hidden text-sm font-medium text-white sm:inline">
+          <span className="hidden text-sm font-medium text-slate-900 dark:text-white sm:inline">
             {`${name[0]?.toUpperCase()}${name?.slice(1)}`}
           </span>
         </span>
@@ -62,7 +62,7 @@ function ProfileMenu() {
 
         <Menu.Item to="/game/settings">
           <span className="flex items-center gap-3">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal/10 ">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal/10">
               <HiOutlineCog className="text-lg" />
             </span>
 
@@ -72,7 +72,7 @@ function ProfileMenu() {
 
         <Menu.Item to="/">
           <span className="flex items-center gap-3">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-olive-200/10 ">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-olive-200/10">
               <HiOutlineQuestionMarkCircle className="text-lg" />
             </span>
 
@@ -86,7 +86,7 @@ function ProfileMenu() {
               <Spinner size="sm" />
             </span>
           ) : (
-            <span className="flex items-center gap-1 bg-danger w-full text-text py-2 px-1 rounded-md">
+            <span className="flex w-full items-center gap-1 rounded-md bg-danger dark:bg-danger px-1 py-2 text-white dark:text-text">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-theme-red/10">
                 <HiArrowLeftOnRectangle className="text-lg" />
               </span>
