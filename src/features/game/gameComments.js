@@ -245,3 +245,60 @@ export const botLossComments = [
 
   "I'm happy for you. Deeply annoyed, but happy. 😂",
 ];
+
+export const multiplayerTurnComments = [
+  "It's your turn! Pick a number. 🎯",
+  "Your turn is waiting for you. 👀",
+  "You're up! Choose your number. 🎲",
+  "The game is waiting for your move.",
+  "Your turn! Let's see what number you pick. 🍀",
+  "Everyone's waiting on you. Your turn! 😄",
+  "You're up next. Make your move!",
+  "Your card is ready. Pick a number! 🎯",
+  "It's your move. Choose wisely. 👀",
+  "Your turn has arrived. Let's play!",
+  "The numbers aren't going to pick themselves. 😄",
+  "You're on the clock! Pick a number.",
+  "Your move could change the game. 🎯",
+  "All eyes are on you. It's your turn! 👀",
+  "Time to make your move!",
+];
+
+export const multiplayerWaitingComments = [
+  "Waiting for the next player to make their move...",
+  "The game is waiting for the current player.",
+  "Hang tight! Another player is making their move. ⏳",
+  "Your turn is coming up.",
+  "The game continues once the current player picks a number.",
+  "Someone is thinking... 👀",
+  "Waiting for the next number to be called.",
+  "The next move is on its way. 🎯",
+  "Stay ready. Your turn could be next!",
+  "The game is still going. Hang in there! 😄",
+];
+
+export const multiplayerWinComments = [
+  "Bingo! You won the game! 🎉",
+  "You got Bingo! Congratulations! 🥳",
+  "That's Bingo! You won! 🎉",
+  "What a game! You came out on top. 🏆",
+  "Bingo! Your card did it. 🎯",
+  "Congratulations! You completed your Bingo pattern. 🥳",
+  "You made it! Bingo is yours! 🎉",
+  "That's a win! Well played. 🏆",
+  "Bingo! Your winning move is complete. 🎊",
+  "You did it! Congratulations on the win! 🎉",
+];
+
+export const multiplayerLossComments = [
+  "The game is over. Another player got Bingo.",
+  "Another player completed Bingo. Better luck next game!",
+  "Bingo! Another player has won the game. 🎯",
+  "The game has ended. Another player got there first.",
+  "Another player completed their Bingo pattern. 🏆",
+  "That round goes to another player. Good game!",
+  "Someone got Bingo before you. The game is over.",
+  "Another player has claimed the win. 🎉",
+  "The winning pattern was completed by another player.",
+  "This round is over. Another player got Bingo!",
+];

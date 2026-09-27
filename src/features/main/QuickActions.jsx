@@ -1,8 +1,10 @@
 import { HiOutlineClock, HiPencilAlt, HiUserAdd } from "react-icons/hi";
 
 import Button from "../../components/ui/Button";
+import { useAuth } from "../../contexts/AuthContext";
 
 function QuickActions() {
+  const { role } = useAuth();
   return (
     <>
       <Button
@@ -19,7 +21,12 @@ function QuickActions() {
         <span>Change Card</span>
       </Button>
 
-      <Button to="/game/multiplayer" style="glass" rounded="rounded-[100px]">
+      <Button
+        to="/game/multiplayer"
+        disabled={role !== "admin"}
+        style="glass"
+        rounded="rounded-[100px]"
+      >
         <HiUserAdd className="shrink-0" />
         <span>Invite Friends</span>
       </Button>

@@ -4,6 +4,8 @@ import FemaleBingoBot from "../../components/ui/GameplayBackground";
 import { useGameTheme } from "../../contexts/GameThemeContext";
 
 function GameCard({ type, name, numbers, score, isTurn, onClick }) {
+  console.log(isTurn);
+
   const { theme } = useGameTheme();
 
   const isPlayer = type === "player";

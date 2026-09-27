@@ -1,6 +1,6 @@
-function OrderedListItem({ children, number }) {
+function OrderedListItem({ children, number, position = "start" }) {
   return (
-    <li className="flex items-start gap-2 sm:gap-3">
+    <li className={`flex items-${position} gap-2 sm:gap-3`}>
       <span className="shrink-0 text-sm sm:text-base flex items-center justify-center bg-amber-500/50 dark:bg-amber/30 sm:w-7 sm:h-7 w-5 h-5 text-white dark:text-amber rounded-full mt-1 font-bold font-primary pb-1">
         {number}
       </span>

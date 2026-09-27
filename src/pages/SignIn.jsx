@@ -4,8 +4,6 @@ import useNavigationAnimation from "../hooks/usePageTransition";
 
 function SignIn() {
   const shouldAnimate = useNavigationAnimation();
-  console.log(shouldAnimate);
-  
 
   return (
     <div className={shouldAnimate ? "animate-slide-in" : ""}>

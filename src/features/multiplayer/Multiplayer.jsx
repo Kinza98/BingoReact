@@ -12,6 +12,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useCreateGame } from "./useCraeteGame";
 import Spinner from "../../components/ui/Spinner";
 import { useJoinGame } from "./useJoinGame";
+import OrderedListItem from "../../components/ui/OrderedListItem";
 
 function Multiplayer() {
   const [gameCode, setGameCode] = useState("");
@@ -54,24 +55,19 @@ function Multiplayer() {
   if (isCreating) return <Spinner />;
 
   return (
-    // NOTE: swap bg-[#0f2c28] for your real dark-teal page token (e.g. bg-ocean-900)
-    // if one already exists in your theme — I used an arbitrary hex since I can't see
-    // your tailwind config, to guarantee it matches the /game page background exactly.
     <div className="relative min-h-screen overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
-      {/* Decorative floating shapes, same language as the /game welcome screen */}
-
       <div className="relative mx-auto w-full max-w-6xl">
         {/* Hero */}
         <div className="mx-auto mb-10 max-w-2xl text-center">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white sm:h-16 sm:w-16">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-200 text-slate-700 dark:bg-white/10 dark:text-white sm:h-16 sm:w-16">
             <HiOutlineUserGroup className="h-7 w-7 sm:h-8 sm:w-8" />
           </div>
 
-          <h1 className="font-primary text-4xl leading-tight text-white sm:text-5xl">
+          <h1 className="font-primary text-4xl leading-tight text-slate-800 dark:text-white sm:text-5xl">
             Multiplayer Bingo
           </h1>
 
-          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-white/60 sm:text-base">
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-600 dark:text-white/60 sm:text-base">
             Gather your friends, create a game, and see who gets Bingo first.
           </p>
         </div>
@@ -79,55 +75,46 @@ function Multiplayer() {
         {/* Main options */}
         <div className="grid gap-5 md:grid-cols-2">
           {/* CREATE GAME */}
-          <section className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-6 sm:p-8">
+          <section className="relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/50 p-6 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none sm:p-8">
             <div className="flex items-start justify-between gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-amber-400">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-500 dark:bg-white/10 dark:text-amber-400">
                 <HiOutlinePlus className="h-7 w-7" />
               </div>
 
-              <span className="rounded-full bg-amber-400/10 px-3 py-1 text-xs font-bold text-amber-400">
+              <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-600 dark:bg-amber-400/10 dark:text-amber-400">
                 HOST
               </span>
             </div>
 
-            <h2 className="mt-7 font-primary text-3xl text-white">
+            <h2 className="mt-7 font-primary text-3xl text-slate-800 dark:text-white">
               Create a Game
             </h2>
 
-            <p className="mt-3 max-w-md text-sm leading-6 text-white/60 sm:text-base">
+            <p className="mt-3 max-w-md text-sm leading-6 text-slate-600 dark:text-white/60 sm:text-base">
               Start your own Bingo room and invite your friends to join using a
               simple game code.
             </p>
 
             {/* Steps */}
-            <div className="mt-7 space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white/80">
-                  1
-                </span>
-                <span className="text-sm text-white/80">
+            <ol className="mt-2 mb-5 space-y-3">
+              <OrderedListItem position="center" number={1}>
+                <span className="text-sm text-slate-700 dark:text-white/80">
                   Create your Bingo game
                 </span>
-              </div>
+              </OrderedListItem>
 
-              <div className="flex items-center gap-3">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white/80">
-                  2
-                </span>
-                <span className="text-sm text-white/80">
+              <OrderedListItem position="center" number={2}>
+                <span className="text-sm text-slate-700 dark:text-white/80">
                   Share the game code with friends
                 </span>
-              </div>
+              </OrderedListItem>
 
-              <div className="flex items-center gap-3">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white/80">
-                  3
-                </span>
-                <span className="text-sm text-white/80">
+              <OrderedListItem position="center" number={3}>
+                <span className="text-sm text-slate-700 dark:text-white/80">
                   Start playing when everyone is ready
                 </span>
-              </div>
-            </div>
+              </OrderedListItem>
+            </ol>
 
             <Button
               variant="pine"
@@ -142,9 +129,9 @@ function Multiplayer() {
           </section>
 
           {/* JOIN GAME */}
-          <section className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-6 sm:p-8">
+          <section className="relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/50 p-6 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none sm:p-8">
             <div className="flex items-start justify-between gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-player">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-player dark:bg-white/10">
                 <HiOutlineLink className="h-7 w-7" />
               </div>
 
@@ -153,11 +140,11 @@ function Multiplayer() {
               </span>
             </div>
 
-            <h2 className="mt-7 font-primary text-3xl text-white">
+            <h2 className="mt-7 font-primary text-3xl text-slate-800 dark:text-white">
               Join a Game
             </h2>
 
-            <p className="mt-3 max-w-md text-sm leading-6 text-white/60 sm:text-base">
+            <p className="mt-3 max-w-md text-sm leading-6 text-slate-600 dark:text-white/60 sm:text-base">
               Got an invitation from a friend? Enter their game code to join.
             </p>
 
@@ -165,13 +152,13 @@ function Multiplayer() {
             <div className="mt-7">
               <label
                 htmlFor="game-code"
-                className="mb-2 block text-sm font-bold text-white/80"
+                className="mb-2 block text-sm font-bold text-slate-700 dark:text-white/80"
               >
                 Game code
               </label>
 
               <div className="relative">
-                <HiOutlineLink className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/40" />
+                <HiOutlineLink className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 dark:text-white/40" />
 
                 <input
                   id="game-code"
@@ -185,11 +172,17 @@ function Multiplayer() {
                   }}
                   placeholder="Enter code or paste link"
                   autoComplete="off"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 py-3.5 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-white/40 focus:border-player focus:ring-2 focus:ring-player/20"
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3.5 pl-11 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-player focus:ring-2 focus:ring-player/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40"
                 />
               </div>
 
-              <p className="mt-2 text-xs text-white/40">Example: BNG-4821</p>
+              <p className="mt-2 text-xs text-slate-500 dark:text-white/40">
+                Example: BNG-4821
+              </p>
+
+              <p className="mt-3 text-xs text-slate-500 dark:text-white/40">
+                Ask the host for the game code if you don’t have one.
+              </p>
             </div>
 
             <Button
@@ -208,9 +201,10 @@ function Multiplayer() {
 
         {/* Bottom hint */}
         <div className="mt-6 flex items-center justify-center gap-2 text-center">
-          <HiOutlineUserGroup className="h-4 w-4 text-white/40" />
-          <p className="text-xs text-white/40 sm:text-sm">
-            Multiplayer games can be joined using a shared code .
+          <HiOutlineUserGroup className="h-4 w-4 text-slate-400 dark:text-white/40" />
+
+          <p className="text-xs text-slate-500 dark:text-white/40 sm:text-sm">
+            Multiplayer games can be joined using a shared code.
           </p>
         </div>
       </div>

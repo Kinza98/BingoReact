@@ -8,6 +8,10 @@ export function useJoinGame() {
     mutationFn: async ({ code, userId, playerName }) => {
       const game = await getGameByCode(code);
 
+      if (game.status === "playing") {
+        throw new Error("This game has already started.");
+      }
+
       const player = await joinGame({
         gameId: game.id,
         userId,

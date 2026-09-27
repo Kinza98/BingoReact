@@ -39,8 +39,5 @@ export function useGame(gameId) {
     };
   }, [gameId, queryClient]);
 
-  return {
-    game,
-    isLoading,
-  };
+  return { game, isLoading };
 }

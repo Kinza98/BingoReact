@@ -13,7 +13,6 @@ function Button({
   disabled,
   state,
 }) {
-  console.log(state);
   
   const colorMap = {
     lightPurple: "bg-[#967c9b]",

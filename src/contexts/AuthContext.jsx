@@ -12,6 +12,7 @@ function AuthProvider({ children }) {
   const darkMode = user?.user_metadata?.darkMode ?? false;
   const soundOn = user?.user_metadata?.soundOn ?? false;
   const saveHistory = user?.user_metadata?.saveHistory ?? false;
+  const role = user?.user_metadata?.role ?? "";
 
   useEffect(() => {
     async function getCurrentSession() {
@@ -53,6 +54,7 @@ function AuthProvider({ children }) {
         email: user?.email,
         name: user?.user_metadata?.name,
         isGuest: user?.is_anonymous,
+        role,
         soundOn,
         darkMode,
         saveHistory,

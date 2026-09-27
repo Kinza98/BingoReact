@@ -8,6 +8,7 @@ import BingoCelebration from "./BingoCelebration";
 import StartAnnouncement from "./StartAnnouncement";
 import InactivityComment from "./InactivityComment";
 import SoundToggle from "./SoundToggle";
+import ConfirmDialog from "../../components/ui/ConfirmDialog";
 
 import useGameSounds from "./useGameSounds";
 import useInactivityComment from "./useInactivityComment";
@@ -28,6 +29,7 @@ import {
 } from "../../utils/bingoGameUtils";
 
 import { START_ANNOUNCEMENT_DURATION } from "../../constants/game";
+import useLeaveGame from "../../hooks/useLeaveGame";
 
 const BOT_NAME = "Kizi";
 
@@ -42,6 +44,7 @@ function GamePlay() {
 
   const [turn, setTurn] = useState("you");
   const [showIntroBot, setShowIntroBot] = useState(false);
+  const [winner, setWinner] = useState(null);
   const [showStartAnnouncement, setShowStartAnnouncement] = useState(false);
   const [celebrationScore, setCelebrationScore] = useState(null);
 
@@ -62,9 +65,26 @@ function GamePlay() {
   const score = calculateBingoScore(pattern);
   const botScore = calculateBingoScore(botPattern);
 
-  const isWin = score >= 5;
-  const isLoss = botScore >= 5;
-  const isGameOver = isWin || isLoss;
+  // The player who called the number that caused the winning score wins.
+  useEffect(() => {
+    if (winner !== null) return;
+
+    if (score >= 5 || botScore >= 5) {
+      if (calledBy === "bot") {
+        setWinner("bot");
+      } else if (calledBy === "you") {
+        setWinner("you");
+      }
+    }
+  }, [score, botScore, calledBy, winner]);
+
+  const isWin = score >= 5 && winner === "you";
+  const isLoss = score >= 5 && winner === "bot";
+  const isGameOver = winner !== null;
+
+  const { showLeaveDialog, confirmLeave, cancelLeave } = useLeaveGame({
+    enabled: !isGameOver && !showIntroBot,
+  });
 
   const { comment, clearComment } = useInactivityComment({
     enabled: !showIntroBot && !isGameOver,
@@ -178,6 +198,7 @@ function GamePlay() {
     hasPlayedEndSound.current = false;
 
     setTurn("you");
+    setWinner(null);
     clearComment();
     setCelebrationScore(null);
 
@@ -268,6 +289,16 @@ function GamePlay() {
           onToggle={() => updateSettingsFun({ soundOn: !soundOn })}
         />
       </div>
+
+      <ConfirmDialog
+        show={showLeaveDialog}
+        title="Leave Game?"
+        message="Are you sure you want to leave the game? Your current game will be lost."
+        confirmText="Leave Game"
+        cancelText="Stay"
+        onConfirm={confirmLeave}
+        onCancel={cancelLeave}
+      />
     </div>
   );
 }
